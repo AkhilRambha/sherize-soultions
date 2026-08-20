@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { dataService } from "@/services/dataService";
 import { toast } from "sonner";
-import { LayoutDashboard, Users, Briefcase, BarChart3, LogOut, CheckCircle2, Lock, ArrowRight, Plus, Trash2, Image } from "lucide-react";
+import { LayoutDashboard, Users, Briefcase, BarChart3, LogOut, CheckCircle2, Lock, ArrowRight, Plus, Trash2, Image, Eye, EyeOff } from "lucide-react";
 
 export default function AdminDashboard() {
   const [isAuthenticated, setIsAuthenticated] = useState(
@@ -9,6 +9,7 @@ export default function AdminDashboard() {
   );
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const [activeTab, setActiveTab] = useState("stats");
   const [stats, setStats] = useState([]);
@@ -216,13 +217,23 @@ export default function AdminDashboard() {
             </div>
             <div>
               <label className="text-xs uppercase text-gray-400 font-semibold mb-2 block">Password</label>
-              <input
-                type="password"
-                value={password}
-                onChange={e => setPassword(e.target.value)}
-                className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-gray-900 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-all"
-                required
-              />
+              <div className="relative">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  value={password}
+                  onChange={e => setPassword(e.target.value)}
+                  className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 pr-12 text-gray-900 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-all"
+                  required
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 focus:outline-none"
+                  title={showPassword ? "Hide password" : "Show password"}
+                >
+                  {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+                </button>
+              </div>
             </div>
           </div>
           <button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white shadow-lg shadow-blue-600/30 px-6 py-3 rounded-xl font-medium flex items-center justify-center gap-2 transition-all">
