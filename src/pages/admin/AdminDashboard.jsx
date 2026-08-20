@@ -194,49 +194,63 @@ export default function AdminDashboard() {
 
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen flex items-center justify-center p-6 bg-gray-50 font-sans">
-        <form onSubmit={handleLogin} className="bg-white p-10 rounded-3xl w-full max-w-md shadow-xl border border-gray-100">
+      <div className="min-h-screen flex items-center justify-center p-6 bg-white font-sans relative overflow-hidden">
+
+        <form onSubmit={handleLogin} className="bg-white p-10 rounded-3xl w-full max-w-sm shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 relative z-10 animate-fade-up">
           <div className="flex justify-center mb-8">
-            <div className="h-16 w-16 bg-blue-50 rounded-2xl flex items-center justify-center">
+            <div className="h-16 w-16 bg-blue-50 border border-blue-100 rounded-2xl flex items-center justify-center">
               <Lock className="text-blue-600 h-8 w-8" />
             </div>
           </div>
-          <h1 className="text-3xl font-bold text-gray-900 text-center mb-2">Admin Portal</h1>
+          <h1 className="text-3xl font-display font-bold text-gray-900 text-center mb-2 tracking-tight">Admin Portal</h1>
           <p className="text-gray-500 text-center mb-8 text-sm">Sign in to manage website content</p>
 
-          <div className="space-y-4 mb-8">
-            <div>
-              <label className="text-xs uppercase text-gray-400 font-semibold mb-2 block">Username</label>
+          <div className="space-y-8 mb-8 mt-4">
+            <div className="relative">
               <input
+                id="admin-username"
                 type="text"
                 value={username}
                 onChange={e => setUsername(e.target.value)}
-                className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-gray-900 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-all"
+                className="peer w-full bg-transparent border-0 border-b-2 border-gray-200 px-0 py-2 text-gray-900 focus:border-blue-600 focus:ring-0 outline-none transition-colors placeholder-transparent"
+                placeholder="Username"
                 required
               />
+              <label
+                htmlFor="admin-username"
+                className="absolute left-0 -top-3.5 text-xs text-blue-600 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-xs peer-focus:text-blue-600 font-medium pointer-events-none"
+              >
+                Username
+              </label>
             </div>
-            <div>
-              <label className="text-xs uppercase text-gray-400 font-semibold mb-2 block">Password</label>
-              <div className="relative">
-                <input
-                  type={showPassword ? "text" : "password"}
-                  value={password}
-                  onChange={e => setPassword(e.target.value)}
-                  className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 pr-12 text-gray-900 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-all"
-                  required
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 focus:outline-none"
-                  title={showPassword ? "Hide password" : "Show password"}
-                >
-                  {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
-                </button>
-              </div>
+
+            <div className="relative">
+              <input
+                id="admin-password"
+                type={showPassword ? "text" : "password"}
+                value={password}
+                onChange={e => setPassword(e.target.value)}
+                className="peer w-full bg-transparent border-0 border-b-2 border-gray-200 px-0 py-2 pr-10 text-gray-900 focus:border-blue-600 focus:ring-0 outline-none transition-colors placeholder-transparent"
+                placeholder="Password"
+                required
+              />
+              <label
+                htmlFor="admin-password"
+                className="absolute left-0 -top-3.5 text-xs text-blue-600 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-xs peer-focus:text-blue-600 font-medium pointer-events-none"
+              >
+                Password
+              </label>
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-0 top-2 text-gray-400 hover:text-blue-600 focus:outline-none transition-colors"
+                title={showPassword ? "Hide password" : "Show password"}
+              >
+                {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+              </button>
             </div>
           </div>
-          <button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white shadow-lg shadow-blue-600/30 px-6 py-3 rounded-xl font-medium flex items-center justify-center gap-2 transition-all">
+          <button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 hover:-translate-y-1 hover:shadow-blue-600/40 px-6 py-3.5 rounded-xl font-medium flex items-center justify-center gap-2 text-white transition-all duration-300 shadow-lg shadow-blue-600/20">
             Sign In <ArrowRight className="h-4 w-4" />
           </button>
         </form>
