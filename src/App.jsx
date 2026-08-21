@@ -12,6 +12,7 @@ import { Toaster } from "@/components/ui/sonner";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 
 import { ScrollToTop } from "@/components/shared/ScrollToTop";
+import { FloatingContact } from "@/components/shared/FloatingContact";
 
 export default function App() {
   const location = useLocation();
@@ -33,6 +34,7 @@ export default function App() {
         <Route path="/terms" element={<Terms />} />
       </Routes>
       <Toaster />
+      <FloatingContact />
     </>
   );
 }

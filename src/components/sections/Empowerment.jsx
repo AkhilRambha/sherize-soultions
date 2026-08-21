@@ -8,7 +8,7 @@ import { dataService } from "@/services/dataService";
 const iconsMap = [Home, Clock, GraduationCap, TrendingUp, HeartHandshake, Sparkles];
 
 export function Empowerment() {
-  const [activeFeature, setActiveFeature] = useState(0);
+  const [activeFeature, setActiveFeature] = useState(null);
   const [features, setFeatures] = useState([]);
 
   useEffect(() => {
@@ -48,7 +48,7 @@ export function Empowerment() {
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 relative items-start">
           {/* Left Column: Interactive List (7 cols) */}
           <div className="lg:col-span-7 flex flex-col justify-center">
-            <div className="relative border-l border-white/10 pl-6 sm:pl-12 py-4 space-y-2">
+            <div className="relative border-l border-white/10 pl-6 sm:pl-12 py-4 space-y-2" onMouseLeave={() => setActiveFeature(null)}>
               {features.map((f, i) => {
                 const isActive = activeFeature === i;
                 const Icon = iconsMap[i % iconsMap.length];
@@ -80,7 +80,7 @@ export function Empowerment() {
                           transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                           className="overflow-hidden"
                         >
-                          <p className="pt-4 sm:pt-6 pb-2 text-base sm:text-lg text-white/70 leading-relaxed max-w-lg font-light pl-2">
+                          <p className="pt-4 sm:pt-6 pb-2 text-base sm:text-lg text-white/70 leading-relaxed max-w-lg font-light pl-2 line-clamp-3">
                             {f.desc}
                           </p>
                         </motion.div>

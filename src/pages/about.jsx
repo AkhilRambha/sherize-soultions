@@ -13,6 +13,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import { PageShell, CTASection } from "@/components/layout/PageShell";
+import aboutHero from "@/assets/images/about_hero.jpg";
 import { Reveal } from "@/components/shared/Reveal";
 import dashboard from "@/assets/images/hero-dashboard.jpg";
 import { Empowerment } from "@/components/sections/Empowerment";
@@ -50,7 +51,7 @@ export default function AboutPage() {
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://images.unsplash.com/photo-1573164713988-8665fc963095?q=80&w=2069&auto=format&fit=crop" 
+            src={aboutHero} 
             alt="About Sherize" 
             className="w-full h-full object-cover opacity-50 scale-105 animate-slow-pan"
           />

@@ -1,6 +1,12 @@
 import { useState, useEffect } from "react";
 import { dataService } from "@/services/dataService";
 import { PageShell, CTASection } from "@/components/layout/PageShell";
+import galleryHero from "@/assets/images/gallery_hero.jpg";
+import aboutHero from "@/assets/images/about_hero.jpg";
+import avatar1 from "@/assets/images/avatar1.jpg";
+import avatar2 from "@/assets/images/avatar2.jpg";
+import avatar3 from "@/assets/images/avatar3.jpg";
+import avatar4 from "@/assets/images/avatar4.jpg";
 import { Reveal } from "@/components/shared/Reveal";
 import { BackButton } from "@/components/layout/BackButton";
 import { Instagram, ArrowRight, Heart, MessageCircle } from "lucide-react";
@@ -30,7 +36,7 @@ export default function GalleryPage() {
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2071&auto=format&fit=crop" 
+            src={galleryHero} 
             alt="Sherize Culture" 
             className="w-full h-full object-cover opacity-70 scale-105 animate-slow-pan"
           />
@@ -63,7 +69,7 @@ export default function GalleryPage() {
             <Reveal className="relative">
               <div className="relative rounded-[2rem] overflow-hidden border border-white/10 aspect-[4/3] group">
                 <img
-                  src="https://images.unsplash.com/photo-1573164713988-8665fc963095?q=80&w=2069&auto=format&fit=crop"
+                  src={aboutHero}
                   alt="Women collaborating"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
@@ -86,7 +92,7 @@ export default function GalleryPage() {
                 <div className="flex -space-x-4">
                   {[1, 2, 3, 4].map(i => (
                     <div key={i} className={`w-12 h-12 rounded-full border-2 border-background overflow-hidden bg-white/10 z-[${5 - i}] relative`}>
-                      <img src={`https://randomuser.me/api/portraits/women/${20 + i}.jpg`} alt="Team member" className="w-full h-full object-cover" />
+                      <img src={i === 1 ? avatar1 : i === 2 ? avatar2 : i === 3 ? avatar3 : avatar4} alt="Team member" className="w-full h-full object-cover" />
                     </div>
                   ))}
                 </div>
