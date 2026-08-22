@@ -14,7 +14,7 @@ export default function ContactPage() {
   });
 
   useEffect(() => {
-    const loadData = () => setContact(dataService.getContact());
+    const loadData = () => setContact({ ...dataService.getContact(), ...dataService.getSocial() });
     loadData();
 
     window.addEventListener("sherize_data_updated", loadData);
@@ -117,7 +117,7 @@ ${message}
                 <a
                   key={c.label}
                   href={c.href}
-                  target={c.href.startsWith("http") ? "_blank" : undefined}
+                  target={c.href?.startsWith("http") ? "_blank" : undefined}
                   rel="noreferrer"
                   className="group block glass-strong card-hover shine rounded-2xl p-6"
                 >
@@ -253,3 +253,4 @@ export function Field({ label, name, type, required }) {
     </div>
   );
 }
+

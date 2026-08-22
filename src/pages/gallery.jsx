@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+﻿import { useState, useEffect } from "react";
 import { dataService } from "@/services/dataService";
 import { PageShell, CTASection } from "@/components/layout/PageShell";
 import galleryHero from "@/assets/images/gallery_hero.jpg";
@@ -35,9 +35,9 @@ export default function GalleryPage() {
       <section className="relative min-h-screen flex items-center justify-center pt-24 pb-12 overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
-          <img 
-            src={galleryHero} 
-            alt="Sherize Culture" 
+          <img
+            src={galleryHero}
+            alt="Sherize Culture"
             className="w-full h-full object-cover opacity-70 scale-105 animate-slow-pan"
           />
           <div className="absolute inset-0 bg-background/50" />
@@ -180,29 +180,29 @@ export default function GalleryPage() {
             </Reveal>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {testimonials.map((testimonial, i) => (
-              <Reveal key={testimonial.id || i} delay={i * 150} className="mt-10 bg-[#0a0a0a] border border-white/5 p-8 pt-12 rounded-3xl relative group hover:border-white/10 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)] hover:bg-[#0f0f0f]">
+              <Reveal key={testimonial.id || i} delay={i * 150} className="mt-8 bg-[#0a0a0a] border border-white/5 p-6 pt-10 rounded-3xl relative group hover:border-white/10 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)] hover:bg-[#0f0f0f]">
                 {/* Top Accent Line */}
                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary/40 via-purple-500/40 to-transparent opacity-30 group-hover:opacity-100 transition-opacity duration-500 rounded-t-3xl" />
 
                 {/* Breakout Avatar */}
-                <div className="absolute -top-10 left-8">
+                <div className="absolute -top-8 left-6">
                   <div className="relative group-hover:scale-110 transition-transform duration-500">
                     <div className="absolute inset-0 bg-primary rounded-full blur-md opacity-0 group-hover:opacity-40 transition-opacity duration-500" />
-                    <img src={testimonial.img} alt={testimonial.author} className="w-20 h-20 rounded-full border-4 border-background relative z-10 object-cover" />
+                    <img src={testimonial.img} alt={testimonial.author} className="w-16 h-16 rounded-full border-4 border-background relative z-10 object-cover" />
                   </div>
                 </div>
 
                 <div className="text-white/5 absolute top-6 right-6 font-serif text-8xl leading-none group-hover:text-primary/10 transition-colors duration-500">"</div>
 
-                <p className="text-white/60 text-lg leading-relaxed mb-8 relative z-10 font-light mt-4 group-hover:text-white/90 transition-colors duration-300">
+                <p className="text-white/60 text-sm leading-relaxed mb-6 relative z-10 font-light mt-3 group-hover:text-white/90 transition-colors duration-300">
                   {testimonial.quote}
                 </p>
 
-                <div className="relative z-10 border-t border-white/5 pt-6 mt-auto">
-                  <div className="text-white font-medium text-lg">{testimonial.author}</div>
-                  <div className="text-primary text-sm font-semibold tracking-wide uppercase mt-1">{testimonial.role}</div>
+                <div className="relative z-10 border-t border-white/5 pt-4 mt-auto">
+                  <div className="text-white font-medium text-base">{testimonial.author}</div>
+                  <div className="text-primary text-[11px] font-semibold tracking-wider uppercase mt-1">{testimonial.role}</div>
                 </div>
               </Reveal>
             ))}
@@ -231,3 +231,6 @@ export default function GalleryPage() {
     </PageShell>
   );
 }
+
+
+

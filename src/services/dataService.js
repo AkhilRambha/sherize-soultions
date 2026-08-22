@@ -1,3 +1,8 @@
+import avatar1 from "@/assets/images/CEO.jpeg";
+import avatar2 from "@/assets/images/COFOUNDER.jpeg";
+import avatar3 from "@/assets/images/HR.jpeg";
+import avatar4 from "@/assets/images/OperationManager.jpeg";
+
 const DEFAULT_STATS = [
   { id: "1", v: 24, s: "/7", label: "Support Available" },
   { id: "2", v: 120, s: "+", label: "Remote Women" },
@@ -81,7 +86,7 @@ const DEFAULT_GALLERY = [
   {
     id: "1",
     img: "https://videos.pexels.com/video-files/3129957/3129957-uhd_2560_1440_25fps.mp4",
-    caption: "Our team hard at work in the remote office! 💻✨",
+    caption: "Our team hard at work in the remote office! \u200D",
   },
   {
     id: "2",
@@ -91,7 +96,7 @@ const DEFAULT_GALLERY = [
   {
     id: "3",
     img: "https://videos.pexels.com/video-files/7551410/7551410-uhd_2160_4096_25fps.mp4",
-    caption: "Focusing on customer success. Every call matters! 📞",
+    caption: "Focusing on customer success. Every call matters! \u200D",
   },
   {
     id: "4",
@@ -101,7 +106,7 @@ const DEFAULT_GALLERY = [
   {
     id: "5",
     img: "https://videos.pexels.com/video-files/4011409/4011409-uhd_2560_1440_25fps.mp4",
-    caption: "Celebrating a massive milestone this quarter! 🎉",
+    caption: "Celebrating a massive milestone this quarter! \u200D",
   },
   {
     id: "6",
@@ -114,28 +119,35 @@ const DEFAULT_TESTIMONIALS = [
   {
     id: "1",
     quote: "Sherize didn't just give me a remote job; they gave me a supportive community of women who understand the unique challenges of balancing career and life.",
-    author: "Sarah J.",
-    role: "Customer Success Lead",
-    img: "https://randomuser.me/api/portraits/women/44.jpg"
+    author: "Vijayalakshmi M ",
+    role: "CEO",
+    img: avatar1
   },
   {
     id: "2",
     quote: "The flexibility is unmatched. I can travel the world, manage my schedule, and still lead a high-performing digital marketing team. It's truly empowering.",
-    author: "Elena R.",
-    role: "Marketing Director",
-    img: "https://randomuser.me/api/portraits/women/68.jpg"
+    author: "Datti Madhuri",
+    role: "COFOUNDER & DIRECTOR",
+    img: avatar2
   },
   {
     id: "3",
     quote: "Being surrounded by ambitious, driven women every single day pushes me to be my best self. The culture here is nothing short of incredible.",
-    author: "Priya M.",
-    role: "Operations Manager",
-    img: "https://randomuser.me/api/portraits/women/32.jpg"
+    author: "Veda Samhitha Telaganeni",
+    role: "HR",
+    img: avatar3
+  },
+  {
+    id: "4",
+    quote: "Our mission is to create a space where talented women can thrive professionally. It's an honor to be part of this incredible team.",
+    author: "Indhu Katari",
+    role: "OPERATIONS MANAGER",
+    img: avatar4
   }
 ];
 
 const DEFAULT_WHY_CHOOSE = [
-  { id: "1", title: "Cost-Effective Services", desc: "Premium delivery at startup-friendly pricing — no compromise on quality." },
+  { id: "1", title: "Cost-Effective Services", desc: "Premium delivery at startup-friendly pricing - no compromise on quality." },
   { id: "2", title: "Expert Remote Professionals", desc: "Vetted specialists across design, development, operations, and growth." },
   { id: "3", title: "Quick & Reliable Execution", desc: "Ship in days, not quarters. Async sprints with clear milestones and deliverables." },
   { id: "4", title: "Modern Technology Approach", desc: "AI-assisted workflows, modern stacks, and future-proof systems." },
@@ -148,125 +160,91 @@ const DEFAULT_EMPOWERMENT = [
   { id: "2", title: "Flexible Hours", desc: "Choose hours that fit your life. Family first, work in flow." },
   { id: "3", title: "Learning & Skills", desc: "Curated training, dedicated mentors, and premium toolkits to level up your skills every month." },
   { id: "4", title: "Career & Earnings", desc: "Transparent growth ladders with bonuses tied directly to your impact and success." },
-  { id: "5", title: "Supportive Culture", desc: "A safe, women-only environment where we lift each other up." },
-  { id: "6", title: "Global Impact", desc: "Work with top international brands and make a difference from day one." }
 ];
 
 const DEFAULT_CONTACT = {
-  email: "info@sherize.in",
-  phone: "+91-7672073746",
-  address: "India",
-  instagram: "https://instagram.com/sherize.solutions",
-  whatsapp: "https://wa.me/917672073746",
-  facebook: "https://facebook.com/",
-  linkedin: "https://linkedin.com/company/sherize-solutions"
+  email: "hello@sherize.com",
+  phone: "+7672073746",
+  address: "Nagole, Hyderabad, Telangana",
+  whatsapp: "https://wa.me/7672073746",
 };
 
+const DEFAULT_SOCIAL = {
+  instagram: "https://instagram.com/sherize.solutions",
+  linkedin: "https://linkedin.com/company/sherize",
+  twitter: "https://twitter.com/sherize",
+  facebook: "https://facebook.com/sherize"
+};
+
+
 const DEFAULT_ABOUT_SPECIALTIES = [
-  { id: "1", label: "IT Services" },
-  { id: "2", label: "Website Development" },
-  { id: "3", label: "Web Applications" },
-  { id: "4", label: "Mobile App Development" },
-  { id: "5", label: "UI/UX Design" },
-  { id: "6", label: "Digital Marketing" },
-  { id: "7", label: "Telecalling Services" },
-  { id: "8", label: "BPO Support" }
+  { label: "Women Empowerment" },
+  { label: "Global Opportunities" },
+  { label: "Remote Flexibility" },
+  { label: "Skill Development" },
 ];
 
 const DEFAULT_CAREER_PERKS = [
-  { id: "1", title: "Work from home", desc: "No commute. Complete flexibility." },
-  { id: "2", title: "Flexible timings", desc: "Choose hours that respect your life." },
-  { id: "3", title: "Earn independently", desc: "Transparent, performance-based pay." },
-  { id: "4", title: "Training support", desc: "Upskill through our programs." },
-  { id: "5", title: "Showcase your skills", desc: "Work with top-tier clients." },
-  { id: "6", title: "Partner with us", desc: "Join our core network." },
-  { id: "7", title: "Women-led community", desc: "A supportive, safe environment." },
-  { id: "8", title: "Real career growth", desc: "Clear pathways to leadership." }
+  { label: "Work From Anywhere", desc: "No commutes, complete freedom." },
+  { label: "Competitive Pay", desc: "Earn what you deserve, globally." },
+  { label: "Mentorship Programs", desc: "Learn from the best in the industry." },
+  { label: "Health & Wellness", desc: "Support for a balanced lifestyle." },
 ];
 
 export const dataService = {
-  getStats: () => {
-    const data = localStorage.getItem("sherize_stats");
-    return data ? JSON.parse(data) : DEFAULT_STATS;
-  },
-  setStats: (stats) => {
-    localStorage.setItem("sherize_stats", JSON.stringify(stats));
-  },
-
-  getRoles: () => {
-    const data = localStorage.getItem("sherize_roles");
-    return data ? JSON.parse(data) : DEFAULT_ROLES;
-  },
-  setRoles: (roles) => {
-    localStorage.setItem("sherize_roles", JSON.stringify(roles));
-  },
-
-  getServices: () => {
-    const data = localStorage.getItem("sherize_services");
-    return data ? JSON.parse(data) : DEFAULT_SERVICES;
-  },
-  setServices: (services) => {
-    localStorage.setItem("sherize_services", JSON.stringify(services));
-  },
-
-  getGallery: () => {
-    const data = localStorage.getItem("sherize_gallery");
-    return data ? JSON.parse(data) : DEFAULT_GALLERY;
-  },
-  setGallery: (gallery) => {
-    localStorage.setItem("sherize_gallery", JSON.stringify(gallery));
-  },
-
-  getTestimonials: () => {
-    const data = localStorage.getItem("sherize_testimonials");
-    return data ? JSON.parse(data) : DEFAULT_TESTIMONIALS;
-  },
-  setTestimonials: (t) => {
-    localStorage.setItem("sherize_testimonials", JSON.stringify(t));
-  },
-
-  getWhyChoose: () => {
-    const data = localStorage.getItem("sherize_whychoose");
-    return data ? JSON.parse(data) : DEFAULT_WHY_CHOOSE;
-  },
-  setWhyChoose: (w) => {
-    localStorage.setItem("sherize_whychoose", JSON.stringify(w));
-  },
-
-  getEmpowerment: () => {
-    const data = localStorage.getItem("sherize_empowerment");
-    return data ? JSON.parse(data) : DEFAULT_EMPOWERMENT;
-  },
-  setEmpowerment: (e) => {
-    localStorage.setItem("sherize_empowerment", JSON.stringify(e));
-  },
-
-  getContact: () => {
-    const data = localStorage.getItem("sherize_contact");
-    return data ? JSON.parse(data) : DEFAULT_CONTACT;
-  },
-  setContact: (c) => {
-    localStorage.setItem("sherize_contact", JSON.stringify(c));
-  },
-
-  getAboutSpecialties: () => {
-    const data = localStorage.getItem("sherize_about_specialties");
-    return data ? JSON.parse(data) : DEFAULT_ABOUT_SPECIALTIES;
-  },
-  setAboutSpecialties: (s) => {
-    localStorage.setItem("sherize_about_specialties", JSON.stringify(s));
-  },
-
-  getCareerPerks: () => {
-    const data = localStorage.getItem("sherize_career_perks");
-    return data ? JSON.parse(data) : DEFAULT_CAREER_PERKS;
-  },
-  setCareerPerks: (p) => {
-    localStorage.setItem("sherize_career_perks", JSON.stringify(p));
-  },
-  
-  // Helper to trigger events across tabs
-  notifyChange: () => {
+  getStats: () => JSON.parse(localStorage.getItem("sherize_stats")) || DEFAULT_STATS,
+  setStats: (data) => {
+    localStorage.setItem("sherize_stats", JSON.stringify(data));
     window.dispatchEvent(new Event("sherize_data_updated"));
-  }
+  },
+  getRoles: () => JSON.parse(localStorage.getItem("sherize_roles")) || DEFAULT_ROLES,
+  setRoles: (data) => {
+    localStorage.setItem("sherize_roles", JSON.stringify(data));
+    window.dispatchEvent(new Event("sherize_data_updated"));
+  },
+  getServices: () => JSON.parse(localStorage.getItem("sherize_services")) || DEFAULT_SERVICES,
+  setServices: (data) => {
+    localStorage.setItem("sherize_services", JSON.stringify(data));
+    window.dispatchEvent(new Event("sherize_data_updated"));
+  },
+  getGallery: () => JSON.parse(localStorage.getItem("sherize_gallery")) || DEFAULT_GALLERY,
+  setGallery: (data) => {
+    localStorage.setItem("sherize_gallery", JSON.stringify(data));
+    window.dispatchEvent(new Event("sherize_data_updated"));
+  },
+  getTestimonials: () => JSON.parse(localStorage.getItem("sherize_testimonials")) || DEFAULT_TESTIMONIALS,
+  setTestimonials: (data) => {
+    localStorage.setItem("sherize_testimonials", JSON.stringify(data));
+    window.dispatchEvent(new Event("sherize_data_updated"));
+  },
+  getWhyChoose: () => JSON.parse(localStorage.getItem("sherize_why_choose")) || DEFAULT_WHY_CHOOSE,
+  setWhyChoose: (data) => {
+    localStorage.setItem("sherize_why_choose", JSON.stringify(data));
+    window.dispatchEvent(new Event("sherize_data_updated"));
+  },
+  getEmpowerment: () => JSON.parse(localStorage.getItem("sherize_empowerment")) || DEFAULT_EMPOWERMENT,
+  setEmpowerment: (data) => {
+    localStorage.setItem("sherize_empowerment", JSON.stringify(data));
+    window.dispatchEvent(new Event("sherize_data_updated"));
+  },
+  getContact: () => JSON.parse(localStorage.getItem("sherize_contact")) || DEFAULT_CONTACT,
+  setContact: (data) => {
+    localStorage.setItem("sherize_contact", JSON.stringify(data));
+    window.dispatchEvent(new Event("sherize_data_updated"));
+  },
+  getSocial: () => JSON.parse(localStorage.getItem("sherize_social")) || DEFAULT_SOCIAL,
+  setSocial: (data) => {
+    localStorage.setItem("sherize_social", JSON.stringify(data));
+    window.dispatchEvent(new Event("sherize_data_updated"));
+  },
+  getAboutSpecialties: () => JSON.parse(localStorage.getItem("sherize_about_specialties")) || DEFAULT_ABOUT_SPECIALTIES,
+  setAboutSpecialties: (data) => {
+    localStorage.setItem("sherize_about_specialties", JSON.stringify(data));
+    window.dispatchEvent(new Event("sherize_data_updated"));
+  },
+  getCareerPerks: () => JSON.parse(localStorage.getItem("sherize_career_perks")) || DEFAULT_CAREER_PERKS,
+  setCareerPerks: (data) => {
+    localStorage.setItem("sherize_career_perks", JSON.stringify(data));
+    window.dispatchEvent(new Event("sherize_data_updated"));
+  },
 };
