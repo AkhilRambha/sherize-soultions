@@ -85,7 +85,7 @@ const DEFAULT_SERVICES = [
 const DEFAULT_GALLERY = [
   {
     id: "1",
-    img: "https://videos.pexels.com/video-files/3129957/3129957-uhd_2560_1440_25fps.mp4",
+    img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80",
     caption: "Our team hard at work in the remote office! \u200D",
   },
   {
@@ -95,7 +95,7 @@ const DEFAULT_GALLERY = [
   },
   {
     id: "3",
-    img: "https://videos.pexels.com/video-files/7551410/7551410-uhd_2160_4096_25fps.mp4",
+    img: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80",
     caption: "Focusing on customer success. Every call matters! \u200D",
   },
   {
@@ -105,7 +105,7 @@ const DEFAULT_GALLERY = [
   },
   {
     id: "5",
-    img: "https://videos.pexels.com/video-files/4011409/4011409-uhd_2560_1440_25fps.mp4",
+    img: "https://images.unsplash.com/photo-1573497491208-6b1acb260507?auto=format&fit=crop&q=80",
     caption: "Celebrating a massive milestone this quarter! \u200D",
   },
   {

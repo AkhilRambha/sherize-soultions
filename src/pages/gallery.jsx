@@ -121,22 +121,7 @@ export default function GalleryPage() {
               >
                 {/* Background Image / Video */}
                 <div className="absolute inset-0">
-                  {item.img && item.img.match(/\.(mp4|webm|ogg)$/i) ? (
-                    <video
-                      src={item.img}
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                  ) : (
-                    <img
-                      src={item.img}
-                      alt={item.caption}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                  )}
+                  <img src={item.img} alt={item.caption} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
                   {/* Overlay gradient that appears on hover */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
                 </div>
