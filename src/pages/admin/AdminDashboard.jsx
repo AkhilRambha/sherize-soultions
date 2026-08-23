@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+﻿import { useState, useEffect } from "react";
 import { dataService } from "@/services/dataService";
 import { toast } from "sonner";
 import { LayoutDashboard, Users, Briefcase, BarChart3, LogOut, CheckCircle2, Lock, ArrowRight, Plus, Trash2, Image, Eye, EyeOff } from "lucide-react";
@@ -65,7 +65,6 @@ export default function AdminDashboard() {
   const deleteStat = (index) => setStats(stats.filter((_, i) => i !== index));
   const handleSaveStats = () => {
     dataService.setStats(stats);
-    dataService.notifyChange();
     toast.success("Stats updated successfully!");
   };
 
@@ -79,7 +78,6 @@ export default function AdminDashboard() {
   const deleteRole = (index) => setRoles(roles.filter((_, i) => i !== index));
   const handleSaveRoles = () => {
     dataService.setRoles(roles);
-    dataService.notifyChange();
     toast.success("Open Roles updated successfully!");
   };
 
@@ -93,7 +91,6 @@ export default function AdminDashboard() {
   const deleteService = (index) => setServices(services.filter((_, i) => i !== index));
   const handleSaveServices = () => {
     dataService.setServices(services);
-    dataService.notifyChange();
     toast.success("Services updated successfully!");
   };
 
@@ -107,7 +104,6 @@ export default function AdminDashboard() {
   const deleteGallery = (index) => setGallery(gallery.filter((_, i) => i !== index));
   const handleSaveGallery = () => {
     dataService.setGallery(gallery);
-    dataService.notifyChange();
     toast.success("Gallery updated successfully!");
   };
 
@@ -121,7 +117,6 @@ export default function AdminDashboard() {
   const deleteTestimonial = (index) => setTestimonials(testimonials.filter((_, i) => i !== index));
   const handleSaveTestimonials = () => {
     dataService.setTestimonials(testimonials);
-    dataService.notifyChange();
     toast.success("Testimonials updated successfully!");
   };
 
@@ -135,7 +130,6 @@ export default function AdminDashboard() {
   const deleteWhyChoose = (index) => setWhyChoose(whyChoose.filter((_, i) => i !== index));
   const handleSaveWhyChoose = () => {
     dataService.setWhyChoose(whyChoose);
-    dataService.notifyChange();
     toast.success("Why Choose Us updated successfully!");
   };
 
@@ -149,7 +143,6 @@ export default function AdminDashboard() {
   const deleteEmpowerment = (index) => setEmpowerment(empowerment.filter((_, i) => i !== index));
   const handleSaveEmpowerment = () => {
     dataService.setEmpowerment(empowerment);
-    dataService.notifyChange();
     toast.success("Empowerment updated successfully!");
   };
 
@@ -159,7 +152,6 @@ export default function AdminDashboard() {
   };
   const handleSaveContact = () => {
     dataService.setContact(contact);
-    dataService.notifyChange();
     toast.success("Contact info updated successfully!");
   };
 
@@ -173,7 +165,6 @@ export default function AdminDashboard() {
   const deleteAboutSpecialty = (index) => setAboutSpecialties(aboutSpecialties.filter((_, i) => i !== index));
   const handleSaveAboutSpecialties = () => {
     dataService.setAboutSpecialties(aboutSpecialties);
-    dataService.notifyChange();
     toast.success("Specialties updated successfully!");
   };
 
@@ -187,7 +178,6 @@ export default function AdminDashboard() {
   const deleteCareerPerk = (index) => setCareerPerks(careerPerks.filter((_, i) => i !== index));
   const handleSaveCareerPerks = () => {
     dataService.setCareerPerks(careerPerks);
-    dataService.notifyChange();
     toast.success("Career Perks updated successfully!");
   };
 
@@ -711,3 +701,4 @@ function TabButton({ active, onClick, icon: Icon, label }) {
     </button>
   );
 }
+

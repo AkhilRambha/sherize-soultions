@@ -177,7 +177,7 @@ export default function OpportunitiesPage() {
           {/* Clean, minimalist 2-column checklist */}
           <div className="grid md:grid-cols-2 gap-x-12 gap-y-8">
             {careerPerks.map((w, i) => (
-              <Reveal key={w.id || w.title} delay={i * 50}>
+              <Reveal key={w.id || w.title || i} delay={i * 50}>
                 <div className="flex items-start gap-5 p-4 rounded-2xl hover:bg-white/[0.02] transition-colors border border-transparent hover:border-white/5">
                   <div className="shrink-0 mt-1">
                     <CheckCircle2 className="h-6 w-6 text-primary" />

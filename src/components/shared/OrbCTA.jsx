@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+﻿import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -16,7 +16,7 @@ export function OrbCTA() {
           className="flex flex-col items-center"
         >
           {/* Orb Container with everything inside */}
-          <div className="relative w-[350px] h-[350px] sm:w-[450px] sm:h-[450px] rounded-full flex flex-col items-center justify-center p-6">
+          <div className="relative w-[280px] h-[280px] sm:w-[380px] sm:h-[380px] rounded-full flex flex-col items-center justify-center p-6">
             {/* The Orb Background */}
             <div className="absolute inset-0 pointer-events-auto overflow-hidden rounded-full mask-image-radial">
               <Orb
@@ -29,9 +29,9 @@ export function OrbCTA() {
             </div>
 
             {/* Content inside Orb */}
-            <div className="relative z-10 flex flex-col items-center justify-center pointer-events-none">
-              <h2 className="text-4xl sm:text-3xl font-display font-semibold tracking-tighter mb-6 leading-[1.1] pointer-events-auto">
-                Let's Build <span className="text-gradient">Together</span>
+            <div className="relative z-10 flex flex-col items-center justify-center pointer-events-none w-full h-full px-6 text-center">
+              <h2 className="text-2xl sm:text-3xl font-display font-semibold tracking-tighter mb-4 leading-tight pointer-events-auto">
+                Let's Build <span className="block text-gradient mt-1 text-3xl sm:text-4xl">Together</span>
               </h2>
 
               <Link
@@ -47,3 +47,4 @@ export function OrbCTA() {
     </section>
   );
 }
+

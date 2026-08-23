@@ -1,4 +1,4 @@
-import { Mesh, Program, Renderer, Triangle, Vec3 } from "ogl";
+﻿import { Mesh, Program, Renderer, Triangle, Vec3 } from "ogl";
 import { useEffect, useRef } from "react";
 import "./Orb.css";
 
@@ -292,7 +292,7 @@ export default function Orb({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hue, hoverIntensity, rotateOnHover, forceHoverState, backgroundColor]);
 
-  return <div ref={ctnDom} className="orb-w-full max-w-[1280px]" />;
+  return <div ref={ctnDom} className="orb-container" />;
 }
 
 function hslToRgb(h, s, l) {
@@ -347,3 +347,4 @@ function hexToVec3(color) {
 
   return new Vec3(0, 0, 0);
 }
+
