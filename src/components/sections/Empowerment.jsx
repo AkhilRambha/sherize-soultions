@@ -32,7 +32,7 @@ export function Empowerment() {
         className="absolute right-0 top-1/2 -translate-y-1/2 h-[800px] w-[800px] rounded-full bg-violet/5 blur-[120px] pointer-events-none"
       />
 
-      <div className="container mx-auto px-6 max-w-7xl relative z-10">
+      <div className="w-full max-w-[1280px] mx-auto px-6 max-w-7xl relative z-10">
         {/* Centered Heading */}
         <Reveal className="text-center mb-16">
           <span className="inline-flex items-center gap-3 text-sm uppercase tracking-[0.25em] text-primary font-medium mb-6">

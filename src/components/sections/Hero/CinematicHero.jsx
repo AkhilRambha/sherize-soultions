@@ -49,7 +49,7 @@ export function CinematicHero() {
       <HeroBackground />
 
       {/* Foreground Content with parallax */}
-      <div className="container mx-auto px-6 lg:px-12 relative z-10 w-full h-full flex items-center">
+      <div className="w-full max-w-[1280px] mx-auto px-6 lg:px-12 relative z-10 w-full h-full flex items-center">
         <motion.div style={{ x, y }} className="w-full">
           <HeroContent />
         </motion.div>

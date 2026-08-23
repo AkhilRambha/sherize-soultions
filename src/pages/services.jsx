@@ -56,7 +56,7 @@ export default function ServicesPage() {
 
           <div className="absolute inset-0 bg-gradient-to-b from-background/30 via-background/60 to-background" />
         </div>
-        <div className="container mx-auto px-6 max-w-5xl text-center relative z-10">
+        <div className="w-full max-w-[1280px] mx-auto px-6 max-w-5xl text-center relative z-10">
           <Reveal>
             <span className="inline-flex items-center gap-3 text-sm uppercase tracking-[0.25em] text-primary font-medium mb-6">
               <span className="h-px w-12 bg-primary/50" />
@@ -79,7 +79,7 @@ export default function ServicesPage() {
 
       {/* Expanding Image Accordion */}
       <section className="relative py-12 sm:py-20 bg-background overflow-hidden">
-        <div className="container mx-auto px-4 sm:px-6 max-w-[1400px]">
+        <div className="w-full max-w-[1280px] mx-auto px-4 sm:px-6 max-w-[1400px]">
           <Reveal className="mb-12 text-center">
             <h2 className="text-3xl sm:text-5xl font-display font-semibold tracking-tight text-white">
               Explore <span className="text-gradient">Services</span>

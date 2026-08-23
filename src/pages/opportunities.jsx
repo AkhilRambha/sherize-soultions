@@ -63,7 +63,7 @@ export default function OpportunitiesPage() {
           <div className="absolute inset-0 bg-gradient-to-b from-background/30 via-background/60 to-background" />
         </div>
 
-        <div className="container mx-auto px-6 max-w-5xl text-center relative z-10">
+        <div className="w-full max-w-[1280px] mx-auto px-6 max-w-5xl text-center relative z-10">
           <Reveal>
             <span className="inline-flex items-center gap-3 text-sm uppercase tracking-[0.25em] text-primary font-medium mb-6">
               <span className="h-px w-12 bg-primary/50" />
@@ -87,7 +87,7 @@ export default function OpportunitiesPage() {
 
       {/* Sleek Agency Directory (Open Roles) */}
       <section className="relative py-20 sm:py-24">
-        <div className="container mx-auto px-6 max-w-5xl">
+        <div className="w-full max-w-[1280px] mx-auto px-6 max-w-5xl">
           <Reveal className="mb-16 text-center">
             <h2 className="text-4xl sm:text-6xl font-display font-semibold tracking-tight text-white">
               Open <span className="text-gradient">Roles</span>.
@@ -164,7 +164,7 @@ export default function OpportunitiesPage() {
 
       {/* Streamlined "Why Join" Section */}
       <section className="relative py-20 sm:py-24 overflow-hidden bg-background">
-        <div className="container mx-auto px-6 max-w-5xl">
+        <div className="w-full max-w-[1280px] mx-auto px-6 max-w-5xl">
           <Reveal className="text-center mb-16">
             <span className="inline-flex items-center gap-3 text-xs uppercase tracking-[0.25em] text-primary font-medium mb-4">
               <span className="h-px w-8 bg-primary/50" /> Why join us

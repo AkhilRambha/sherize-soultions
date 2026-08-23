@@ -29,7 +29,7 @@ export function PageShell({ children }) {
 export function PageHero({ eyebrow, title, highlight, subtitle }) {
   return (
     <section className="relative pt-40 pb-20 overflow-hidden">
-      <div className="container mx-auto px-6 text-center max-w-4xl">
+      <div className="w-full max-w-[1280px] mx-auto px-6 text-center max-w-4xl">
         <Reveal>
           <span className="inline-flex items-center gap-2 glass rounded-full px-4 py-1.5 text-xs text-primary uppercase tracking-[0.15em] font-medium border border-primary/20">
             <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse-glow" />
@@ -54,7 +54,7 @@ export function PageHero({ eyebrow, title, highlight, subtitle }) {
 export function CTASection({ eyebrow, title, highlight, text, actions }) {
   return (
     <section className="relative py-28">
-      <div className="container mx-auto px-6">
+      <div className="w-full max-w-[1280px] mx-auto px-6">
         <Reveal>
           <div className="relative glass-strong rounded-[2rem] p-10 sm:p-16 text-center overflow-hidden">
             {eyebrow && (

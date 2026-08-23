@@ -7,7 +7,7 @@ import Orb from "@/components/ui/Orb";
 export function OrbCTA() {
   return (
     <section className="relative py-20 bg-background flex flex-col items-center text-center">
-      <div className="container mx-auto px-6 flex flex-col items-center">
+      <div className="w-full max-w-[1280px] mx-auto px-6 flex flex-col items-center">
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}

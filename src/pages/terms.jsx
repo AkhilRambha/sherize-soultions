@@ -7,7 +7,7 @@ export default function TermsPage() {
   return (
     <PageShell>
       <BackButton />
-      <div className="container mx-auto px-6 py-40 max-w-3xl">
+      <div className="w-full max-w-[1280px] mx-auto px-6 py-40 max-w-3xl">
         <h1 className="text-4xl font-display font-semibold mb-8">Terms of Service</h1>
         <div className="prose prose-invert prose-lg text-muted-foreground space-y-6">
           <p>

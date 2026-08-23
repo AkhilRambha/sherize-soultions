@@ -110,7 +110,7 @@ ${message}
         />
 
         <section className="relative py-16">
-          <div className="container mx-auto px-6 grid lg:grid-cols-12 gap-8">
+          <div className="w-full max-w-[1280px] mx-auto px-6 grid lg:grid-cols-12 gap-8">
             {/* Contact cards */}
             <div className="lg:col-span-5 space-y-4">
               {contacts.map((c, i) => (

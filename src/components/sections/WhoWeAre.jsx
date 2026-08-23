@@ -74,7 +74,7 @@ export function WhoWeAre() {
         className="absolute left-1/2 top-1/3 -translate-x-1/2 -translate-y-1/2 h-[800px] w-[800px] rounded-full bg-primary/5 blur-[120px] pointer-events-none"
       />
 
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="w-full max-w-[1280px] mx-auto px-6 relative z-10">
         <Reveal className="text-center max-w-5xl mx-auto">
           <span className="inline-flex items-center gap-3 text-sm uppercase tracking-[0.25em] text-primary font-medium">
             <span className="h-px w-12 bg-primary/50" />

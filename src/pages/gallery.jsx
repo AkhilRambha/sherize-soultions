@@ -45,7 +45,7 @@ export default function GalleryPage() {
           <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-transparent to-transparent" />
         </div>
 
-        <div className="container mx-auto px-6 max-w-5xl text-center relative z-10 mt-12">
+        <div className="w-full max-w-[1280px] mx-auto px-6 max-w-5xl text-center relative z-10 mt-12">
           <Reveal>
             <span className="inline-flex items-center gap-3 text-sm uppercase tracking-[0.25em] text-primary font-medium mb-6">
               <span className="h-px w-12 bg-primary/50" />
@@ -64,7 +64,7 @@ export default function GalleryPage() {
 
       {/* Featured Section */}
       <section className="relative py-12">
-        <div className="container mx-auto px-6 max-w-7xl">
+        <div className="w-full max-w-[1280px] mx-auto px-6 max-w-7xl">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <Reveal className="relative">
               <div className="relative rounded-[2rem] overflow-hidden border border-white/10 aspect-[4/3] group">
@@ -111,7 +111,7 @@ export default function GalleryPage() {
 
       {/* Masonry Gallery Grid */}
       <section className="relative py-12 sm:py-24">
-        <div className="container mx-auto px-6 max-w-7xl">
+        <div className="w-full max-w-[1280px] mx-auto px-6 max-w-7xl">
           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 auto-rows-[200px] md:auto-rows-[240px]">
             {gallery.map((item, i) => (
               <Reveal
@@ -153,7 +153,7 @@ export default function GalleryPage() {
 
       {/* Voices of Sherize Section */}
       <section className="relative py-24 bg-white/5 border-y border-white/10">
-        <div className="container mx-auto px-6 max-w-7xl">
+        <div className="w-full max-w-[1280px] mx-auto px-6 max-w-7xl">
           <div className="text-center mb-16">
             <Reveal>
               <h2 className="text-4xl sm:text-5xl font-display font-semibold text-white mb-4">

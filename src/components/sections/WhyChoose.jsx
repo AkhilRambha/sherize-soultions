@@ -18,7 +18,7 @@ export function WhyChoose() {
 
   return (
     <section id="services" className="relative pt-10 pb-20 sm:pt-12 sm:pb-24 overflow-visible">
-      <div className="container mx-auto px-6 max-w-5xl">
+      <div className="w-full max-w-[1280px] mx-auto px-6 max-w-5xl">
         <Reveal className="text-center mb-24">
           <span className="inline-flex items-center gap-3 text-sm uppercase tracking-[0.25em] text-primary font-medium mb-6">
             <span className="h-px w-12 bg-primary/50" />

@@ -60,7 +60,7 @@ export default function AboutPage() {
           <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-transparent to-transparent" />
         </div>
 
-        <div className="container mx-auto px-6 max-w-5xl text-center relative z-10 mt-12">
+        <div className="w-full max-w-[1280px] mx-auto px-6 max-w-5xl text-center relative z-10 mt-12">
           <Reveal>
             <span className="inline-flex items-center gap-3 text-sm uppercase tracking-[0.25em] text-primary font-medium mb-6 drop-shadow-md">
               <span className="h-px w-12 bg-primary/50" />
@@ -84,7 +84,7 @@ export default function AboutPage() {
 
       {/* Our Story - Bento Layout */}
       <section className="relative py-20 sm:py-24">
-        <div className="container mx-auto px-6 max-w-7xl">
+        <div className="w-full max-w-[1280px] mx-auto px-6 max-w-7xl">
           <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             <Reveal className="lg:col-span-6 flex flex-col gap-8">
               <div>
