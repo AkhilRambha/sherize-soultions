@@ -37,11 +37,13 @@ const iconsMap = [Home, Briefcase, PhoneCall, Palette, GraduationCap, TrendingUp
 export default function OpportunitiesPage() {
   const [opportunities, setOpportunities] = useState([]);
   const [careerPerks, setCareerPerks] = useState([]);
+  const [socialLinks, setSocialLinks] = useState({});
 
   useEffect(() => {
     const loadData = () => {
       setOpportunities(dataService.getRoles());
       setCareerPerks(dataService.getCareerPerks());
+      setSocialLinks(dataService.getSocial());
     };
     loadData();
 
