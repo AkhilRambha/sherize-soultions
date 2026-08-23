@@ -170,10 +170,10 @@ const DEFAULT_CONTACT = {
 };
 
 const DEFAULT_SOCIAL = {
-  instagram: "https://instagram.com/sherize.solutions",
-  linkedin: "https://linkedin.com/company/sherize",
+  instagram: "https://www.instagram.com/sherize.solutions",
+  linkedin: "https://www.linkedin.com/company/sherize-solutions/",
   twitter: "https://twitter.com/sherize",
-  facebook: "https://facebook.com/sherize"
+  facebook: "https://www.facebook.com/share/186JWLAoDw/?mibextid=wwXIfr"
 };
 
 

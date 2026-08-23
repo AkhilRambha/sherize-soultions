@@ -13,7 +13,11 @@ export function Footer() {
   });
 
   useEffect(() => {
-    const loadData = () => setContact(dataService.getContact());
+    const loadData = () => {
+      const contactData = dataService.getContact() || {};
+      const socialData = dataService.getSocial() || {};
+      setContact({ ...contactData, ...socialData });
+    };
     loadData();
 
     window.addEventListener("sherize_data_updated", loadData);
