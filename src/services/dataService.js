@@ -163,9 +163,9 @@ const DEFAULT_EMPOWERMENT = [
 ];
 
 const DEFAULT_CONTACT = {
-  email: "hello@sherize.com",
+  email: "info@sherize.com",
   phone: "+7672073746",
-  address: "Nagole, Hyderabad, Telangana",
+  address: "Sahabhavana Township, Bandlaguda, Nagole , Hyderabad, 500068",
   whatsapp: "https://wa.me/7672073746",
 };
 
