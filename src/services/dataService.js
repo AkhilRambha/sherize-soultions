@@ -118,28 +118,28 @@ const DEFAULT_GALLERY = [
 const DEFAULT_TESTIMONIALS = [
   {
     id: "1",
-    quote: "Sherize didn't just give me a remote job; they gave me a supportive community of women who understand the unique challenges of balancing career and life.",
+    quote: "Leading Sherize means building a future where every woman can thrive and lead without limits.",
     author: "Vijayalakshmi M ",
-    role: "CEO",
+    role: "CEO & FOUNDER",
     img: avatar1
   },
   {
     id: "2",
-    quote: "The flexibility is unmatched. I can travel the world, manage my schedule, and still lead a high-performing digital marketing team. It's truly empowering.",
+    quote: "We built Sherize on the foundation of trust and excellence, ensuring our clients receive nothing but the absolute best.",
     author: "Datti Madhuri",
     role: "COFOUNDER & DIRECTOR",
     img: avatar2
   },
   {
     id: "3",
-    quote: "Being surrounded by ambitious, driven women every single day pushes me to be my best self. The culture here is nothing short of incredible.",
+    quote: "Our greatest asset is our people. I am dedicated to fostering a supportive culture where every voice is heard and valued.",
     author: "Veda Samhitha Telaganeni",
     role: "HR",
     img: avatar3
   },
   {
     id: "4",
-    quote: "Our mission is to create a space where talented women can thrive professionally. It's an honor to be part of this incredible team.",
+    quote: "Efficiency and seamless execution are at the heart of what we do. We turn complex strategies into flawless daily operations.",
     author: "Indhu Katari",
     role: "OPERATIONS MANAGER",
     img: avatar4
