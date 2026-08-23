@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+﻿import { useState, useEffect } from "react";
 import { Mail, MapPin, Phone, Instagram, Facebook, Linkedin, ArrowRight } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import { Reveal } from "@/components/shared/Reveal";
@@ -36,7 +36,7 @@ export function Footer() {
         </h1>
       </div>
 
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8 mb-12">
           {/* Brand Info & Subscribe (Left Side, 5 cols) */}
           <div className="lg:col-span-5 flex flex-col justify-between h-full">
@@ -165,7 +165,7 @@ export function Footer() {
         <Reveal delay={400}>
           <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-6">
             <p className="text-white/40 text-sm font-light">
-              © {new Date().getFullYear()} Sherize Solutions Private Limited.
+              Â© {new Date().getFullYear()} Sherize Solutions Private Limited.
             </p>
 
             <div className="flex items-center gap-6 text-sm text-white/40">
@@ -238,3 +238,4 @@ function SocialLink({ href, icon }) {
     </a>
   );
 }
+
