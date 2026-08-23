@@ -36,7 +36,7 @@ export function Footer() {
         </h1>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+      <div className="w-full max-w-[1280px] mx-auto px-6 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8 mb-12">
           {/* Brand Info & Subscribe (Left Side, 5 cols) */}
           <div className="lg:col-span-5 flex flex-col justify-between h-full">
@@ -238,4 +238,5 @@ function SocialLink({ href, icon }) {
     </a>
   );
 }
+
 
