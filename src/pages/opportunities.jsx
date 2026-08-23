@@ -44,7 +44,7 @@ export default function OpportunitiesPage() {
       setCareerPerks(dataService.getCareerPerks());
     };
     loadData();
-    
+
     window.addEventListener("sherize_data_updated", loadData);
     return () => window.removeEventListener("sherize_data_updated", loadData);
   }, []);
@@ -91,17 +91,17 @@ export default function OpportunitiesPage() {
       <section className="relative py-20 sm:py-32">
         <div className="w-full max-w-[1280px] mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
-            
+
             {/* Left Side: Sticky Image */}
             <div className="lg:sticky lg:top-32 relative h-[400px] lg:h-[700px] w-full rounded-[2.5rem] overflow-hidden group shadow-2xl border border-white/10">
               <div className="absolute inset-0 z-10 bg-gradient-to-t from-background/90 via-background/20 to-transparent pointer-events-none" />
-              
+
               <img
                 src={aboutHero}
                 alt="Sherize Workspace"
                 className="w-full h-full object-cover transition-transform duration-[15000ms] group-hover:scale-110 ease-linear"
               />
-              
+
               {/* Overlay Content */}
               <div className="absolute bottom-10 left-10 right-10 z-20">
                 <Reveal>
@@ -194,22 +194,22 @@ export default function OpportunitiesPage() {
           </div>
         </div>
       </section>
-      
+
       <SectionDivider />
 
       {/* Premium "Why Join" Grid Section */}
       <section className="relative py-20 sm:py-32 overflow-hidden bg-background">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/5 via-background to-background pointer-events-none" />
-        
+
         <div className="w-full max-w-[1280px] mx-auto px-6 relative z-10">
           <Reveal className="text-center mb-16 sm:mb-24">
             <span className="inline-flex items-center gap-3 text-sm uppercase tracking-[0.25em] text-primary font-medium mb-4">
-              <span className="h-px w-12 bg-primary/50" /> 
+              <span className="h-px w-12 bg-primary/50" />
               Why join us
               <span className="h-px w-12 bg-primary/50" />
             </span>
             <h2 className="text-4xl sm:text-6xl lg:text-7xl font-display font-semibold tracking-tighter text-white leading-tight">
-              More than just <br className="hidden sm:block"/> <span className="text-gradient">a job</span>.
+              More than just <br className="hidden sm:block" /> <span className="text-gradient">a job</span>.
             </h2>
           </Reveal>
 
@@ -218,10 +218,10 @@ export default function OpportunitiesPage() {
             {careerPerks.map((w, i) => (
               <Reveal key={w.id || w.title || i} delay={i * 50}>
                 <div className="relative group p-6 sm:p-8 rounded-[1.5rem] bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] hover:border-primary/30 transition-all duration-500 overflow-hidden hover:-translate-y-2 cursor-pointer shadow-xl backdrop-blur-sm h-full flex flex-col items-center text-center min-w-[280px] w-[280px] sm:min-w-[300px] sm:w-[300px] snap-center">
-                  
+
                   {/* Subtle hover background glow */}
                   <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-                  
+
                   {/* Dynamic Floating Icon */}
                   <div className="shrink-0 mb-8 relative">
                     <div className="absolute inset-0 bg-primary/20 blur-xl rounded-full scale-0 group-hover:scale-150 transition-transform duration-700 ease-out" />
@@ -232,7 +232,7 @@ export default function OpportunitiesPage() {
                       })()}
                     </span>
                   </div>
-                  
+
                   {/* Content */}
                   <div className="flex-1 relative z-10">
                     <h4 className="text-xl sm:text-2xl font-display font-semibold text-white mb-3 group-hover:text-primary transition-colors duration-300">
@@ -274,12 +274,12 @@ export default function OpportunitiesPage() {
               Apply Now <ArrowRight className="h-4 w-4" />
             </Link>
             <a
-              href="https://www.instagram.com/sherize_official"
+              href={socialLinks?.instagram || "https://www.instagram.com/sherize.solutions"}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-xl px-6 py-3 text-sm font-medium btn-ghost-glass group hover:border-pink-500/50 hover:bg-pink-500/10 transition-colors"
             >
-              <Instagram className="h-4 w-4 text-pink-500 group-hover:scale-110 transition-transform" /> 
+              <Instagram className="h-4 w-4 text-pink-500 group-hover:scale-110 transition-transform" />
               <span className="text-white/80 group-hover:text-white transition-colors">Join for more updates</span>
             </a>
           </>
