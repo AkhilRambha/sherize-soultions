@@ -1,21 +1,12 @@
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import {
-  ArrowRight,
-  Globe,
-  Code2,
-  Smartphone,
-  Palette,
-  Megaphone,
-  PhoneCall,
-  Headphones,
-} from "lucide-react";
+import { ArrowRight, Globe, Code2, Smartphone, Palette, Megaphone, PhoneCall, Headphones } from "lucide-react";
 import { PageShell, CTASection } from "@/components/layout/PageShell";
 import { Reveal } from "@/components/shared/Reveal";
-import { WhyChoose } from "@/components/sections/WhyChoose";
 import { BackButton } from "@/components/layout/BackButton";
 import servicesHeroBg from "@/assets/images/services_hero_bg.jpg";
 import { dataService } from "@/services/dataService";
-import { useState, useEffect } from "react";
+import { WhyChoose } from "@/components/sections/WhyChoose";
 
 const iconsMap = [Globe, Code2, Smartphone, Palette, Megaphone, PhoneCall, Headphones];
 
@@ -29,6 +20,7 @@ function SectionDivider() {
 
 export default function ServicesPage() {
   const [services, setServices] = useState([]);
+  const [activeService, setActiveService] = useState(0);
 
   useEffect(() => {
     const loadServices = () => setServices(dataService.getServices());
@@ -86,13 +78,19 @@ export default function ServicesPage() {
             </h2>
           </Reveal>
 
-          <div className="flex w-full h-[320px] sm:h-[350px] gap-2 sm:gap-4 overflow-hidden rounded-[2rem]">
+          <div className="flex w-full h-[320px] sm:h-[400px] gap-2 sm:gap-4 overflow-hidden rounded-[2rem]">
             {services.map((s, i) => {
               const Icon = iconsMap[i % iconsMap.length];
+              const isActive = activeService === i;
+              
               return (
                 <div
                   key={s.title}
-                  className="group relative flex-1 hover:grow-[6] sm:hover:grow-[8] transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] overflow-hidden cursor-pointer rounded-[2rem] bg-white/5 border border-white/10"
+                  onClick={() => setActiveService(i)}
+                  onMouseEnter={() => setActiveService(i)}
+                  className={`relative transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] overflow-hidden cursor-pointer rounded-[2rem] bg-white/5 border border-white/10 ${
+                    isActive ? "grow-[20] sm:grow-[12]" : "flex-1"
+                  }`}
                 >
                   {/* Background Image */}
                   <img
@@ -100,16 +98,26 @@ export default function ServicesPage() {
                     alt={s.title}
                     loading="lazy"
                     decoding="async"
-                    className="absolute inset-0 w-full h-full object-cover object-center grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-1000 scale-125 group-hover:scale-100"
+                    className={`absolute inset-0 w-full h-full object-cover object-center transition-all duration-1000 ${
+                      isActive 
+                        ? "grayscale-0 opacity-100 scale-100" 
+                        : "grayscale opacity-40 scale-125"
+                    }`}
                   />
 
                   {/* Cinematic Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/60 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-700" />
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a]/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                  <div className={`absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/60 to-transparent transition-opacity duration-700 ${
+                    isActive ? "opacity-90" : "opacity-80"
+                  }`} />
+                  <div className={`absolute inset-0 bg-gradient-to-r from-[#0a0a0a]/50 to-transparent transition-opacity duration-700 ${
+                    isActive ? "opacity-100" : "opacity-0"
+                  }`} />
 
                   <div className="absolute inset-0 p-4 sm:p-8 flex flex-col justify-end">
                     {/* Compressed State (Vertical Title) */}
-                    <div className="flex flex-col items-center justify-end h-full gap-4 group-hover:opacity-0 group-hover:-translate-y-4 transition-all duration-500 absolute inset-0 pb-8 pointer-events-none">
+                    <div className={`flex flex-col items-center justify-end h-full gap-4 transition-all duration-500 absolute inset-0 pb-8 pointer-events-none ${
+                      isActive ? "opacity-0 -translate-y-4" : "opacity-100 translate-y-0"
+                    }`}>
                       <Icon className="h-6 w-6 text-white/50" />
                       <div
                         style={{ writingMode: "vertical-rl" }}
@@ -120,9 +128,13 @@ export default function ServicesPage() {
                     </div>
 
                     {/* Expanded State Content */}
-                    <div className="opacity-0 translate-y-8 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-700 delay-100 relative z-10 w-[300px] sm:w-[450px] flex flex-col">
+                    <div className={`transition-all duration-700 delay-100 relative z-10 w-[240px] sm:w-[400px] lg:w-[450px] flex flex-col ${
+                      isActive ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 translate-y-8 pointer-events-none"
+                    }`}>
                       <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 mb-3 sm:mb-4">
-                        <span className="grid h-14 w-14 shrink-0 place-items-center rounded-xl bg-primary/10 text-primary group-hover:scale-110 group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-500">
+                        <span className={`grid h-14 w-14 shrink-0 place-items-center rounded-xl transition-all duration-500 ${
+                          isActive ? "bg-primary text-primary-foreground scale-110" : "bg-primary/10 text-primary scale-100"
+                        }`}>
                           <Icon className="h-6 w-6" />
                         </span>
                         <h3 className="text-xl sm:text-3xl font-display font-semibold text-white drop-shadow-md">
