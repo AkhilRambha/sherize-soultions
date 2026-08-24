@@ -36,6 +36,7 @@ const iconsMap = [Home, Briefcase, PhoneCall, Palette, GraduationCap, TrendingUp
 
 export default function OpportunitiesPage() {
   const [opportunities, setOpportunities] = useState([]);
+  const [activeRole, setActiveRole] = useState(null);
   const [careerPerks, setCareerPerks] = useState([]);
   const [socialLinks, setSocialLinks] = useState({});
 
@@ -131,9 +132,14 @@ export default function OpportunitiesPage() {
               </Reveal>
 
               <div className="flex flex-col border-t border-white/10">
-                {opportunities.map((o, i) => (
+                {opportunities.map((o, i) => {
+                  const isActive = activeRole === i;
+                  return (
                   <div
                     key={o.title}
+                    onClick={() => setActiveRole(isActive ? null : i)}
+                    onMouseEnter={() => setActiveRole(i)}
+                    onMouseLeave={() => setActiveRole(null)}
                     className="group border-b border-white/10 transition-colors duration-500 hover:bg-white/[0.04] cursor-pointer"
                   >
                     <Reveal delay={i * 50}>
@@ -141,15 +147,15 @@ export default function OpportunitiesPage() {
                         {/* Persistent Header */}
                         <div className="flex flex-col sm:flex-row sm:items-center justify-between w-full gap-4 sm:gap-0">
                           <div className="flex items-center gap-4 sm:gap-6">
-                            <span className="text-sm font-medium tracking-widest text-primary/50 group-hover:text-primary transition-colors duration-500">
+                            <span className={`text-sm font-medium tracking-widest transition-colors duration-500 ${isActive ? "text-primary" : "text-primary/50 group-hover:text-primary"}`}>
                               0{i + 1}
                             </span>
-                            <h3 className="text-xl sm:text-3xl font-display font-semibold text-white/80 group-hover:text-white transition-all duration-500 group-hover:translate-x-2 tracking-tight">
+                            <h3 className={`text-xl sm:text-3xl font-display font-semibold transition-all duration-500 tracking-tight ${isActive ? "text-white translate-x-2" : "text-white/80 group-hover:text-white group-hover:translate-x-2"}`}>
                               {o.title}
                             </h3>
                           </div>
 
-                          <div className="flex items-center gap-2 bg-white/5 border border-white/10 px-3 py-1.5 rounded-full backdrop-blur-md transition-transform duration-500 group-hover:scale-105 self-start sm:self-auto shrink-0">
+                          <div className={`flex items-center gap-2 bg-white/5 border border-white/10 px-3 py-1.5 rounded-full backdrop-blur-md transition-transform duration-500 self-start sm:self-auto shrink-0 ${isActive ? "scale-105" : "group-hover:scale-105"}`}>
                             <span className="relative flex h-2 w-2">
                               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#10b981] opacity-75"></span>
                               <span className="relative inline-flex rounded-full h-2 w-2 bg-[#10b981]"></span>
@@ -161,22 +167,22 @@ export default function OpportunitiesPage() {
                         </div>
 
                         {/* Expandable Content Area */}
-                        <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] w-full">
+                        <div className={`grid transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] w-full ${isActive ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}>
                           <div className="overflow-hidden">
                             <div className="pt-6 flex flex-col gap-6 items-start border-t border-white/5 mt-6">
                               <div className="flex items-start gap-4 w-full">
-                                <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-primary/20 to-violet/20 text-primary border border-white/5 shadow-inner opacity-0 scale-75 group-hover:scale-100 group-hover:opacity-100 transition-all duration-700 delay-100">
+                                <span className={`grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-primary/20 to-violet/20 text-primary border border-white/5 shadow-inner transition-all duration-700 delay-100 ${isActive ? "opacity-100 scale-100" : "opacity-0 scale-75"}`}>
                                   {(() => {
                                     const Icon = iconsMap[i % iconsMap.length];
                                     return <Icon className="h-5 w-5" />;
                                   })()}
                                 </span>
-                                <p className="text-base text-white/60 font-light leading-relaxed opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-700 delay-150 pt-1">
+                                <p className={`text-base text-white/60 font-light leading-relaxed transition-all duration-700 delay-150 pt-1 ${isActive ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"}`}>
                                   {o.desc}
                                 </p>
                               </div>
 
-                              <div className="opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-700 delay-200 shrink-0 self-end mt-2">
+                              <div className={`transition-all duration-700 delay-200 shrink-0 self-end mt-2 ${isActive ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 translate-y-4 pointer-events-none"}`}>
                                 <Link
                                   to="/contact"
                                   className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-medium bg-primary text-primary-foreground hover:bg-primary/90 transition-colors shadow-[0_0_20px_rgba(124,58,237,0.3)] hover:shadow-[0_0_30px_rgba(124,58,237,0.5)]"
@@ -190,7 +196,8 @@ export default function OpportunitiesPage() {
                       </div>
                     </Reveal>
                   </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           </div>
