@@ -21,6 +21,34 @@ function SectionDivider() {
 export default function ServicesPage() {
   const [services, setServices] = useState([]);
   const [activeService, setActiveService] = useState(0);
+  
+  // Drag to scroll logic
+  const scrollRef = useRef(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
+  const [hasDragged, setHasDragged] = useState(false);
+
+  const handleMouseDown = (e) => {
+    setIsDragging(true);
+    setHasDragged(false);
+    setStartX(e.pageX - scrollRef.current.offsetLeft);
+    setScrollLeft(scrollRef.current.scrollLeft);
+  };
+
+  const handleMouseLeave = () => setIsDragging(false);
+  
+  const handleMouseUp = () => setIsDragging(false);
+
+  const handleMouseMove = (e) => {
+    if (!isDragging) return;
+    e.preventDefault();
+    const x = e.pageX - scrollRef.current.offsetLeft;
+    const walk = (x - startX) * 1.5;
+    if (Math.abs(walk) > 10) setHasDragged(true);
+    scrollRef.current.scrollLeft = scrollLeft - walk;
+  };
+
 
   useEffect(() => {
     const loadServices = () => setServices(dataService.getServices());
@@ -78,7 +106,14 @@ export default function ServicesPage() {
             </h2>
           </Reveal>
 
-          <div className="flex w-full h-[320px] sm:h-[400px] gap-2 sm:gap-4 overflow-hidden rounded-[2rem]">
+          <div 
+            ref={scrollRef}
+            onMouseDown={handleMouseDown}
+            onMouseLeave={handleMouseLeave}
+            onMouseUp={handleMouseUp}
+            onMouseMove={handleMouseMove}
+            className="flex w-full h-[320px] sm:h-[400px] gap-2 sm:gap-4 overflow-x-auto hide-scrollbar rounded-[2rem] snap-x snap-mandatory select-none touch-pan-x"
+          >
             {services.map((s, i) => {
               const Icon = iconsMap[i % iconsMap.length];
               const isActive = activeService === i;
@@ -86,10 +121,10 @@ export default function ServicesPage() {
               return (
                 <div
                   key={s.title}
-                  onClick={() => setActiveService(i)}
-                  onMouseEnter={() => setActiveService(i)}
-                  className={`relative transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] overflow-hidden cursor-pointer rounded-[2rem] bg-white/5 border border-white/10 ${
-                    isActive ? "grow-[20] sm:grow-[12]" : "flex-1"
+                  onClick={() => { if (!hasDragged) setActiveService(i); }}
+                  onMouseEnter={() => { if (window.innerWidth >= 640 && !isDragging) setActiveService(i); }}
+                  className={`relative transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] overflow-hidden cursor-pointer rounded-[2rem] bg-white/5 border border-white/10 snap-center shrink-0 ${
+                    isActive ? "w-[85vw] sm:w-auto sm:grow-[12]" : "w-[15vw] sm:w-auto sm:flex-1"
                   }`}
                 >
                   {/* Background Image */}
