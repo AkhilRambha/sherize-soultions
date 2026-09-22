@@ -44,6 +44,8 @@ export default function ServicesPage() {
     } else if (isRightSwipe) {
       setActiveService(prev => Math.max(prev - 1, 0));
     }
+    setTouchStart(null);
+    setTouchEnd(null);
   };
 
   const [mouseStart, setMouseStart] = useState(null);
@@ -124,7 +126,7 @@ export default function ServicesPage() {
             onTouchEnd={onTouchEnd}
             onMouseDown={onMouseDown}
             onMouseUp={onMouseUp}
-            className="flex w-full h-[320px] sm:h-[400px] gap-2 sm:gap-4 overflow-hidden rounded-[2rem] select-none"
+            className="flex w-full h-[320px] sm:h-[400px] gap-2 sm:gap-4 overflow-hidden rounded-[2rem] select-none touch-pan-y"
           >
             {services.map((s, i) => {
               const Icon = iconsMap[i % iconsMap.length];
