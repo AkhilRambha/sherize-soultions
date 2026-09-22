@@ -22,31 +22,43 @@ export default function ServicesPage() {
   const [services, setServices] = useState([]);
   const [activeService, setActiveService] = useState(0);
   
-  // Drag to scroll logic
-  const scrollRef = useRef(null);
-  const [isDragging, setIsDragging] = useState(false);
-  const [startX, setStartX] = useState(0);
-  const [scrollLeft, setScrollLeft] = useState(0);
-  const [hasDragged, setHasDragged] = useState(false);
+  // Swipe to expand logic
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
+  const minSwipeDistance = 50;
 
-  const handleMouseDown = (e) => {
-    setIsDragging(true);
-    setHasDragged(false);
-    setStartX(e.pageX - scrollRef.current.offsetLeft);
-    setScrollLeft(scrollRef.current.scrollLeft);
+  const onTouchStart = (e) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
   };
 
-  const handleMouseLeave = () => setIsDragging(false);
-  
-  const handleMouseUp = () => setIsDragging(false);
+  const onTouchMove = (e) => setTouchEnd(e.targetTouches[0].clientX);
 
-  const handleMouseMove = (e) => {
-    if (!isDragging) return;
-    e.preventDefault();
-    const x = e.pageX - scrollRef.current.offsetLeft;
-    const walk = (x - startX) * 1.5;
-    if (Math.abs(walk) > 10) setHasDragged(true);
-    scrollRef.current.scrollLeft = scrollLeft - walk;
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+    if (isLeftSwipe) {
+      setActiveService(prev => Math.min(prev + 1, services.length - 1));
+    } else if (isRightSwipe) {
+      setActiveService(prev => Math.max(prev - 1, 0));
+    }
+  };
+
+  const [mouseStart, setMouseStart] = useState(null);
+  const onMouseDown = (e) => setMouseStart(e.clientX);
+  const onMouseUp = (e) => {
+    if (mouseStart === null) return;
+    const distance = mouseStart - e.clientX;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+    if (isLeftSwipe) {
+      setActiveService(prev => Math.min(prev + 1, services.length - 1));
+    } else if (isRightSwipe) {
+      setActiveService(prev => Math.max(prev - 1, 0));
+    }
+    setMouseStart(null);
   };
 
 
@@ -107,12 +119,12 @@ export default function ServicesPage() {
           </Reveal>
 
           <div 
-            ref={scrollRef}
-            onMouseDown={handleMouseDown}
-            onMouseLeave={handleMouseLeave}
-            onMouseUp={handleMouseUp}
-            onMouseMove={handleMouseMove}
-            className="flex w-full h-[320px] sm:h-[400px] gap-2 sm:gap-4 overflow-x-auto hide-scrollbar rounded-[2rem] snap-x snap-mandatory select-none touch-pan-x"
+            onTouchStart={onTouchStart}
+            onTouchMove={onTouchMove}
+            onTouchEnd={onTouchEnd}
+            onMouseDown={onMouseDown}
+            onMouseUp={onMouseUp}
+            className="flex w-full h-[320px] sm:h-[400px] gap-2 sm:gap-4 overflow-hidden rounded-[2rem] select-none"
           >
             {services.map((s, i) => {
               const Icon = iconsMap[i % iconsMap.length];
@@ -121,10 +133,10 @@ export default function ServicesPage() {
               return (
                 <div
                   key={s.title}
-                  onClick={() => { if (!hasDragged) setActiveService(i); }}
-                  onMouseEnter={() => { if (window.innerWidth >= 640 && !isDragging) setActiveService(i); }}
-                  className={`relative transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] overflow-hidden cursor-pointer rounded-[2rem] bg-white/5 border border-white/10 snap-center shrink-0 ${
-                    isActive ? "w-[85vw] sm:w-auto sm:grow-[12]" : "w-[15vw] sm:w-auto sm:flex-1"
+                  onClick={() => setActiveService(i)}
+                  onMouseEnter={() => { if (window.innerWidth >= 640) setActiveService(i); }}
+                  className={`relative transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] overflow-hidden cursor-pointer rounded-[2rem] bg-white/5 border border-white/10 ${
+                    isActive ? "grow-[20] sm:grow-[12]" : "flex-1"
                   }`}
                 >
                   {/* Background Image */}
