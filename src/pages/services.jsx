@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, Globe, Code2, Smartphone, Palette, Megaphone, PhoneCall, Headphones } from "lucide-react";
 import { PageShell, CTASection } from "@/components/layout/PageShell";
