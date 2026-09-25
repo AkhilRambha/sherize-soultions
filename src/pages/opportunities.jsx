@@ -135,78 +135,97 @@ export default function OpportunitiesPage() {
                 {opportunities.map((o, i) => {
                   const isActive = activeRole === i;
                   return (
-                  <div
-                    key={o.title}
-                    onClick={() => setActiveRole(isActive ? null : i)}
-                    onMouseEnter={() => setActiveRole(i)}
-                    onMouseLeave={() => setActiveRole(null)}
-                    className="group border-b border-white/10 transition-colors duration-500 hover:bg-white/[0.04] cursor-pointer"
-                  >
-                    <Reveal delay={i * 50}>
-                      <div className="px-2 sm:px-6 py-6 sm:py-8 flex flex-col justify-center">
-                        {/* Persistent Header */}
-                        <div className="flex flex-col sm:flex-row sm:items-center justify-between w-full gap-4 sm:gap-0">
-                          <div className="flex items-center gap-4 sm:gap-6">
-                            <span className={`text-sm font-medium tracking-widest transition-colors duration-500 ${isActive ? "text-primary" : "text-primary/50 group-hover:text-primary"}`}>
-                              0{i + 1}
-                            </span>
-                            <h3 className={`text-xl sm:text-3xl font-display font-semibold transition-all duration-500 tracking-tight ${isActive ? "text-white translate-x-2" : "text-white/80 group-hover:text-white group-hover:translate-x-2"}`}>
-                              {o.title}
-                            </h3>
+                    <div
+                      key={o.title}
+                      onClick={() => setActiveRole(isActive ? null : i)}
+                      onMouseEnter={() => setActiveRole(i)}
+                      onMouseLeave={() => setActiveRole(null)}
+                      className="group border-b border-white/10 transition-colors duration-500 hover:bg-white/[0.04] cursor-pointer"
+                    >
+                      <Reveal delay={i * 50}>
+                        <div className="px-2 sm:px-6 py-6 sm:py-8 flex flex-col justify-center">
+                          {/* Persistent Header */}
+                          <div className="flex flex-col sm:flex-row sm:items-center justify-between w-full gap-4 sm:gap-0">
+                            <div className="flex items-center gap-4 sm:gap-6">
+                              <span className={`text-sm font-medium tracking-widest transition-colors duration-500 ${isActive ? "text-primary" : "text-primary/50 group-hover:text-primary"}`}>
+                                0{i + 1}
+                              </span>
+                              <h3 className={`text-xl sm:text-3xl font-display font-semibold transition-all duration-500 tracking-tight ${isActive ? "text-white translate-x-2" : "text-white/80 group-hover:text-white group-hover:translate-x-2"}`}>
+                                {o.title}
+                              </h3>
+                            </div>
+
+                            <div className={`flex items-center gap-2 bg-white/5 border border-white/10 px-3 py-1.5 rounded-full backdrop-blur-md transition-transform duration-500 self-start sm:self-auto shrink-0 ${isActive ? "scale-105" : "group-hover:scale-105"}`}>
+                              <span className="relative flex h-2 w-2">
+                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#10b981] opacity-75"></span>
+                                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#10b981]"></span>
+                              </span>
+                              <span className="text-[10px] uppercase tracking-wider font-semibold text-white/70">
+                                Hiring
+                              </span>
+                            </div>
                           </div>
 
-                          <div className={`flex items-center gap-2 bg-white/5 border border-white/10 px-3 py-1.5 rounded-full backdrop-blur-md transition-transform duration-500 self-start sm:self-auto shrink-0 ${isActive ? "scale-105" : "group-hover:scale-105"}`}>
-                            <span className="relative flex h-2 w-2">
-                              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#10b981] opacity-75"></span>
-                              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#10b981]"></span>
-                            </span>
-                            <span className="text-[10px] uppercase tracking-wider font-semibold text-white/70">
-                              Hiring
-                            </span>
-                          </div>
-                        </div>
+                          {/* Expandable Content Area */}
+                          <div className={`grid transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] w-full ${isActive ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}>
+                            <div className="overflow-hidden">
+                              <div className="pt-6 flex flex-col gap-6 items-start border-t border-white/5 mt-6">
+                                <div className="flex items-start gap-4 w-full">
+                                  <span className={`grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-primary/20 to-violet/20 text-primary border border-white/5 shadow-inner transition-all duration-700 delay-100 ${isActive ? "opacity-100 scale-100" : "opacity-0 scale-75"}`}>
+                                    {(() => {
+                                      const Icon = iconsMap[i % iconsMap.length];
+                                      return <Icon className="h-5 w-5" />;
+                                    })()}
+                                  </span>
+                                  <p className={`text-base text-white/60 font-light leading-relaxed transition-all duration-700 delay-150 pt-1 ${isActive ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"}`}>
+                                    {o.desc}
+                                  </p>
+                                </div>
 
-                        {/* Expandable Content Area */}
-                        <div className={`grid transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] w-full ${isActive ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}>
-                          <div className="overflow-hidden">
-                            <div className="pt-6 flex flex-col gap-6 items-start border-t border-white/5 mt-6">
-                              <div className="flex items-start gap-4 w-full">
-                                <span className={`grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-primary/20 to-violet/20 text-primary border border-white/5 shadow-inner transition-all duration-700 delay-100 ${isActive ? "opacity-100 scale-100" : "opacity-0 scale-75"}`}>
-                                  {(() => {
-                                    const Icon = iconsMap[i % iconsMap.length];
-                                    return <Icon className="h-5 w-5" />;
-                                  })()}
-                                </span>
-                                <p className={`text-base text-white/60 font-light leading-relaxed transition-all duration-700 delay-150 pt-1 ${isActive ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"}`}>
-                                  {o.desc}
-                                </p>
-                              </div>
+                                <div className={`transition-all duration-700 delay-200 shrink-0 self-end mt-2 ${isActive ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 translate-y-4 pointer-events-none"}`}>
+                                  <a
+                                    href={`https://mail.google.com/mail/?view=cm&fs=1&to=hr@sherize.com&su=${encodeURIComponent(
+                                      `Application for ${o.title}`
+                                    )}&body=${encodeURIComponent(
+                                        `Dear Hiring Manager,
 
-                              <div className={`transition-all duration-700 delay-200 shrink-0 self-end mt-2 ${isActive ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 translate-y-4 pointer-events-none"}`}>
-                                <Link
-                                  to="/contact"
+I am writing to express my interest in the ${o.title} position at Sherize Solutions. 
+
+Please find my contact information below and my resume attached for your review.
+
+Name: [Your Name]
+Phone: [Your Phone Number]
+Email: [Your Email Address]
+LinkedIn/Portfolio: [Optional Link]
+
+Thank you for your time and consideration. I look forward to the possibility of discussing this exciting opportunity with you.
+
+Sincerely,
+[Your Name]
+`
+                                      )}`}
                                   className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-medium bg-primary text-primary-foreground hover:bg-primary/90 transition-colors shadow-[0_0_20px_rgba(124,58,237,0.3)] hover:shadow-[0_0_30px_rgba(124,58,237,0.5)]"
-                                >
+                                  >
                                   Apply Now <ArrowRight className="h-4 w-4" />
-                                </Link>
+                                </a>
                               </div>
                             </div>
                           </div>
                         </div>
-                      </div>
+                    </div>
                     </Reveal>
-                  </div>
-                  );
-                })}
-              </div>
             </div>
+            );
+                })}
           </div>
         </div>
-      </section>
+      </div>
+    </div>
+      </section >
 
-      <SectionDivider />
+    <SectionDivider />
 
-      {/* Premium "Why Join" Grid Section */}
+  {/* Premium "Why Join" Grid Section */ }
       <section className="relative py-20 sm:py-32 overflow-hidden bg-background">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/5 via-background to-background pointer-events-none" />
 
@@ -294,6 +313,6 @@ export default function OpportunitiesPage() {
           </>
         }
       />
-    </PageShell>
+    </PageShell >
   );
 }

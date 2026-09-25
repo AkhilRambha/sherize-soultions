@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Menu, X, ArrowRight } from "lucide-react";
+import { Menu, X, ArrowRight, ChevronDown } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import logo from "@/assets/images/logo.png";
 import "@/styles/global.css";
@@ -65,6 +65,25 @@ export function Navbar() {
               </li>
             );
           })}
+
+          <li className="relative group">
+            <button className="nav-link flex items-center gap-1 py-4">
+              BPO <ChevronDown size={14} className="group-hover:rotate-180 transition-transform" />
+            </button>
+            <div className="absolute top-[80%] left-0 pt-2 w-48 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-300 z-50">
+              <div className="rounded-2xl bg-black/90 backdrop-blur-xl border border-white/10 shadow-2xl overflow-hidden py-2 translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                <a href="https://admin.sherize.in" target="_blank" rel="noopener noreferrer" className="block px-5 py-2.5 text-sm font-medium text-white/70 hover:text-white hover:bg-white/10 transition-colors">
+                  Admin
+                </a>
+                <a href="https://client.sherize.in" target="_blank" rel="noopener noreferrer" className="block px-5 py-2.5 text-sm font-medium text-white/70 hover:text-white hover:bg-white/10 transition-colors">
+                  Client
+                </a>
+                <a href="https://teamleader.sherize.in" target="_blank" rel="noopener noreferrer" className="block px-5 py-2.5 text-sm font-medium text-white/70 hover:text-white hover:bg-white/10 transition-colors">
+                  Team Leader
+                </a>
+              </div>
+            </div>
+          </li>
         </ul>
 
         <div className="navbar-actions">
@@ -96,7 +115,14 @@ export function Navbar() {
             </li>
           ))}
 
-          <li className="pt-2 flex justify-center">
+          <li className="w-full flex flex-col items-center mt-4 pt-4 border-t border-white/10">
+            <span className="text-white/40 text-[10px] tracking-widest uppercase mb-2">BPO Portals</span>
+            <a href="https://admin.sherize.in" target="_blank" rel="noopener noreferrer" className="mobile-link text-sm py-2">Admin</a>
+            <a href="https://client.sherize.in" target="_blank" rel="noopener noreferrer" className="mobile-link text-sm py-2">Client</a>
+            <a href="https://teamleader.sherize.in" target="_blank" rel="noopener noreferrer" className="mobile-link text-sm py-2">Team Leader</a>
+          </li>
+
+          <li className="pt-4 flex justify-center w-full">
             <Link
               to="/contact#form"
               className="inline-flex justify-center items-center w-max gap-2 rounded-xl px-5 py-2 text-sm font-medium btn-glow shine"

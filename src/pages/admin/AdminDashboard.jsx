@@ -1,4 +1,4 @@
-﻿import { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { dataService } from "@/services/dataService";
 import { toast } from "sonner";
 import { LayoutDashboard, Users, Briefcase, BarChart3, LogOut, CheckCircle2, Lock, ArrowRight, Plus, Trash2, Image, Eye, EyeOff } from "lucide-react";
@@ -53,6 +53,47 @@ export default function AdminDashboard() {
     sessionStorage.removeItem("sherize_admin_auth");
     setIsAuthenticated(false);
     toast.info("Logged out successfully");
+  };
+
+    // --- CLOUDINARY UPLOAD ---
+  const uploadToCloudinary = async (file) => {
+    // TODO: Replace with your actual Cloudinary credentials
+    const CLOUD_NAME = 'yjhf6lsp';
+    const UPLOAD_PRESET = 'sherize_preset';
+    
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('upload_preset', UPLOAD_PRESET);
+    
+    try {
+      const res = await fetch(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/auto/upload`, {
+        method: 'POST',
+        body: formData,
+      });
+      const data = await res.json();
+      if (data.secure_url) {
+        return data.secure_url;
+      } else {
+        throw new Error(data.error?.message || 'Upload failed');
+      }
+    } catch (error) {
+      console.error('Cloudinary Upload Error:', error);
+      throw error;
+    }
+  };
+
+  const handleImageUpload = async (e, type, index, field, updaterFunction) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const toastId = toast.loading('Uploading image to Cloudinary...');
+    try {
+      const url = await uploadToCloudinary(file);
+      updaterFunction(index, field, url);
+      toast.success('Image uploaded successfully!', { id: toastId });
+    } catch (error) {
+      toast.error('Failed to upload image.', { id: toastId });
+    }
   };
 
   // --- STATS CRUD ---
@@ -391,7 +432,7 @@ export default function AdminDashboard() {
                     <input type="text" value={s.title} onChange={e => updateService(i, 'title', e.target.value)} className="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2 text-gray-900 font-medium focus:bg-white focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-all mb-4" />
 
                     <label className="text-[10px] uppercase tracking-wider text-gray-500 font-semibold mb-1 block">Image URL</label>
-                    <input type="text" value={s.img || ""} onChange={e => updateService(i, 'img', e.target.value)} placeholder="https://..." className="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2 text-gray-900 text-sm focus:bg-white focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-all" />
+                    <div className="flex gap-2"><input type="file" accept="image/*,video/*" onChange={(e) => handleImageUpload(e, 'service', i, 'img', updateService)} className="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2 text-gray-900 text-sm focus:bg-white focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-all" /><input type="text" value={s.img || ""} onChange={e => updateService(i, 'img', e.target.value)} placeholder="Or paste URL..." className="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2 text-gray-900 text-sm focus:bg-white focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-all" /></div>
                   </div>
                   <div className="w-full md:flex-1">
                     <label className="text-[10px] uppercase tracking-wider text-gray-500 font-semibold mb-1 block">Description</label>
@@ -424,7 +465,7 @@ export default function AdminDashboard() {
                   </div>
                   <div className="w-full md:w-1/3">
                     <label className="text-[10px] uppercase tracking-wider text-gray-500 font-semibold mb-1 block">Image / Video URL</label>
-                    <input type="text" value={g.img || ""} onChange={e => updateGallery(i, 'img', e.target.value)} placeholder="https://..." className="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2 text-gray-900 text-sm focus:bg-white focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-all mb-4" />
+                    <div className="flex gap-2 mb-4"><input type="file" accept="image/*,video/*" onChange={(e) => handleImageUpload(e, 'gallery', i, 'img', updateGallery)} className="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2 text-gray-900 text-sm focus:bg-white focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-all" /><input type="text" value={g.img || ""} onChange={e => updateGallery(i, 'img', e.target.value)} placeholder="Or paste URL..." className="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2 text-gray-900 text-sm focus:bg-white focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-all" /></div>
                     {g.img && (
                       <div className="w-full h-32 rounded-lg overflow-hidden border border-gray-200">
                         {g.img.match(/\.(mp4|webm|ogg)$/i) ? (
@@ -475,7 +516,7 @@ export default function AdminDashboard() {
                       </div>
                       <div>
                         <label className="text-xs uppercase text-gray-400 font-semibold mb-1 block">Image URL</label>
-                        <input type="text" value={t.img} onChange={e => updateTestimonial(i, 'img', e.target.value)} className="w-full bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-900 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none" />
+                        <div className="flex gap-2"><input type="file" accept="image/*" onChange={(e) => handleImageUpload(e, 'testimonial', i, 'img', updateTestimonial)} className="w-full bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-900 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none" /><input type="text" value={t.img || ""} onChange={e => updateTestimonial(i, 'img', e.target.value)} placeholder="Or paste URL..." className="w-full bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-900 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none" /></div>
                       </div>
                       <div>
                         <label className="text-xs uppercase text-gray-400 font-semibold mb-1 block">Quote</label>
@@ -701,4 +742,6 @@ function TabButton({ active, onClick, icon: Icon, label }) {
     </button>
   );
 }
+
+
 
