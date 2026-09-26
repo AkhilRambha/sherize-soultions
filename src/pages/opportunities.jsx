@@ -187,9 +187,31 @@ export default function OpportunitiesPage() {
                                 <div className={`flex flex-wrap gap-4 transition-all duration-700 delay-200 shrink-0 self-start sm:self-end mt-4 ${isActive ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 translate-y-4 pointer-events-none"}`}>
                                   <a
                                     href={(() => {
-                                      if (!o.applyLink) return `https://mail.google.com/mail/?view=cm&fs=1&to=hr@sherize.com&su=${encodeURIComponent(`Application for ${o.title}`)}`;
+                                      const subject = encodeURIComponent(`Application for ${o.title}`);
+                                      const body = encodeURIComponent(`Dear Hiring Manager,
+
+I am writing to express my interest in the ${o.title} position at Sherize Solutions. 
+
+Please find my contact information below and my resume attached for your review.
+
+Name: [Your Name]
+Phone: [Your Phone Number]
+Email: [Your Email Address]
+LinkedIn/Portfolio: [Optional Link]
+
+Thank you for your time and consideration. I look forward to the possibility of discussing this exciting opportunity with you.
+
+Sincerely,
+[Your Name]`);
+                                      
+                                      if (!o.applyLink) return `https://mail.google.com/mail/?view=cm&fs=1&to=hr@sherize.com&su=${subject}&body=${body}`;
+                                      
                                       const link = o.applyLink.trim();
-                                      if (link.includes('@') && !link.startsWith('http')) return link.startsWith('mailto:') ? link : `mailto:${link}`;
+                                      if (link.includes('@') && !link.startsWith('http')) {
+                                        const cleanEmail = link.replace('mailto:', '');
+                                        return `mailto:${cleanEmail}?subject=${subject}&body=${body}`;
+                                      }
+                                      
                                       if (!link.startsWith('http://') && !link.startsWith('https://')) return `https://${link}`;
                                       return link;
                                     })()}
