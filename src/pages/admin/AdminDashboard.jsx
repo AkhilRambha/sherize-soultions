@@ -418,13 +418,26 @@ export default function AdminDashboard() {
                       <Trash2 className="h-5 w-5" />
                     </button>
                   </div>
-                  <div className="w-full md:w-1/3">
-                    <label className="text-[10px] uppercase tracking-wider text-gray-500 font-semibold mb-1 block">Role Title</label>
-                    <input type="text" value={r.title} onChange={e => updateRole(i, 'title', e.target.value)} className="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2 text-gray-900 font-medium focus:bg-white focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-all" />
+                  <div className="w-full md:w-1/3 space-y-4">
+                    <div>
+                      <label className="text-[10px] uppercase tracking-wider text-gray-500 font-semibold mb-1 block">Role Title</label>
+                      <input type="text" value={r.title} onChange={e => updateRole(i, 'title', e.target.value)} className="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2 text-gray-900 font-medium focus:bg-white focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-all" />
+                    </div>
+                    <div>
+                      <label className="text-[10px] uppercase tracking-wider text-gray-500 font-semibold mb-1 block">Apply Link (Email or URL)</label>
+                      <input type="text" value={r.applyLink || ""} onChange={e => updateRole(i, 'applyLink', e.target.value)} placeholder="e.g. hr@sherize.com or https://..." className="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2 text-gray-900 text-sm focus:bg-white focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-all" />
+                    </div>
+                    <div>
+                      <label className="text-[10px] uppercase tracking-wider text-gray-500 font-semibold mb-1 block">Upload JD (Optional PDF/Image)</label>
+                      <div className="flex gap-2">
+                        <input type="file" accept=".pdf,image/*" onChange={(e) => handleImageUpload(e, 'role', i, 'jd', updateRole)} className="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2 text-gray-900 text-sm focus:bg-white focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-all" />
+                      </div>
+                      {r.jd && <a href={r.jd} target="_blank" rel="noreferrer" className="text-xs text-blue-600 hover:underline mt-1 block">View Current JD</a>}
+                    </div>
                   </div>
                   <div className="w-full md:flex-1">
                     <label className="text-[10px] uppercase tracking-wider text-gray-500 font-semibold mb-1 block">Description</label>
-                    <textarea value={r.desc} onChange={e => updateRole(i, 'desc', e.target.value)} rows="3" className="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2 text-gray-900 text-sm focus:bg-white focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none resize-none transition-all" />
+                    <textarea value={r.desc} onChange={e => updateRole(i, 'desc', e.target.value)} rows="8" placeholder="Enter job description here..." className="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2 text-gray-900 text-sm focus:bg-white focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none resize-none transition-all" />
                   </div>
                 </div>
               ))}

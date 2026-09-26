@@ -176,39 +176,37 @@ export default function OpportunitiesPage() {
                                       const Icon = iconsMap[i % iconsMap.length];
                                       return <Icon className="h-5 w-5" />;
                                     })()}
-                                  </span>
-                                  <p className={`text-base text-white/60 font-light leading-relaxed transition-all duration-700 delay-150 pt-1 ${isActive ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"}`}>
-                                    {o.desc}
-                                  </p>
+                                  <div className="flex flex-col flex-1">
+                                    <p className={`whitespace-pre-wrap text-base text-white/60 font-light leading-relaxed transition-all duration-700 delay-150 pt-1 ${isActive ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"}`}>
+                                      {o.desc}
+                                    </p>
+                                  </div>
                                 </div>
 
-                                <div className={`transition-all duration-700 delay-200 shrink-0 self-end mt-2 ${isActive ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 translate-y-4 pointer-events-none"}`}>
+                                <div className={`flex flex-wrap gap-4 transition-all duration-700 delay-200 shrink-0 self-start sm:self-end mt-4 ${isActive ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 translate-y-4 pointer-events-none"}`}>
+                                  {o.jd && (
+                                    <a
+                                      href={o.jd}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-medium bg-white/10 text-white hover:bg-white/20 border border-white/20 transition-colors"
+                                    >
+                                      View JD <Download className="h-4 w-4" />
+                                    </a>
+                                  )}
                                   <a
-                                    href={`https://mail.google.com/mail/?view=cm&fs=1&to=hr@sherize.com&su=${encodeURIComponent(
-                                      `Application for ${o.title}`
-                                    )}&body=${encodeURIComponent(
-                                        `Dear Hiring Manager,
-
-I am writing to express my interest in the ${o.title} position at Sherize Solutions. 
-
-Please find my contact information below and my resume attached for your review.
-
-Name: [Your Name]
-Phone: [Your Phone Number]
-Email: [Your Email Address]
-LinkedIn/Portfolio: [Optional Link]
-
-Thank you for your time and consideration. I look forward to the possibility of discussing this exciting opportunity with you.
-
-Sincerely,
-[Your Name]
-`
-                                      )}`}
-                                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-medium bg-primary text-primary-foreground hover:bg-primary/90 transition-colors shadow-[0_0_20px_rgba(124,58,237,0.3)] hover:shadow-[0_0_30px_rgba(124,58,237,0.5)]"
+                                    href={
+                                      o.applyLink 
+                                        ? (o.applyLink.includes('@') && !o.applyLink.startsWith('mailto:') && !o.applyLink.startsWith('http') ? `mailto:${o.applyLink}` : o.applyLink)
+                                        : `https://mail.google.com/mail/?view=cm&fs=1&to=hr@sherize.com&su=${encodeURIComponent(`Application for ${o.title}`)}`
+                                    }
+                                    target={o.applyLink && !o.applyLink.includes('@') ? "_blank" : "_self"}
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-medium bg-primary text-primary-foreground hover:bg-primary/90 transition-colors shadow-[0_0_20px_rgba(124,58,237,0.3)] hover:shadow-[0_0_30px_rgba(124,58,237,0.5)]"
                                   >
-                                  Apply Now <ArrowRight className="h-4 w-4" />
-                                </a>
-                              </div>
+                                    Apply Now <ArrowRight className="h-4 w-4" />
+                                  </a>
+                                </div>
                             </div>
                           </div>
                         </div>
