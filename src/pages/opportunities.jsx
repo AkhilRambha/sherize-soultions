@@ -176,6 +176,7 @@ export default function OpportunitiesPage() {
                                       const Icon = iconsMap[i % iconsMap.length];
                                       return <Icon className="h-5 w-5" />;
                                     })()}
+                                  </span>
                                   <div className="flex flex-col flex-1">
                                     <p className={`whitespace-pre-wrap text-base text-white/60 font-light leading-relaxed transition-all duration-700 delay-150 pt-1 ${isActive ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"}`}>
                                       {o.desc}
