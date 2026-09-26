@@ -2,14 +2,24 @@ import { useState, useEffect } from "react";
 import { dataService } from "@/services/dataService";
 import { toast } from "sonner";
 import { LayoutDashboard, Users, Briefcase, BarChart3, LogOut, CheckCircle2, Lock, ArrowRight, Plus, Trash2, Image, Eye, EyeOff } from "lucide-react";
+import { auth } from "@/config/firebase";
+import { signInWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth";
 
 export default function AdminDashboard() {
-  const [isAuthenticated, setIsAuthenticated] = useState(
-    sessionStorage.getItem("sherize_admin_auth") === "true"
-  );
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthChecking, setIsAuthChecking] = useState(true);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [isLoggingIn, setIsLoggingIn] = useState(false);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setIsAuthenticated(!!user);
+      setIsAuthChecking(false);
+    });
+    return () => unsubscribe();
+  }, []);
 
   const [activeTab, setActiveTab] = useState("stats");
   const [stats, setStats] = useState([]);
@@ -38,21 +48,28 @@ export default function AdminDashboard() {
     }
   }, [isAuthenticated]);
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    if (username === "admin" && password === "admin@sherize") {
-      sessionStorage.setItem("sherize_admin_auth", "true");
-      setIsAuthenticated(true);
+    setIsLoggingIn(true);
+    try {
+      // Use standard Firebase auth instead of dummy login
+      await signInWithEmailAndPassword(auth, username, password);
       toast.success("Welcome back, Admin!");
-    } else {
-      toast.error("Invalid credentials. ! Try Again");
+    } catch (error) {
+      toast.error("Invalid credentials. Try Again");
+      console.error(error);
+    } finally {
+      setIsLoggingIn(false);
     }
   };
 
-  const handleLogout = () => {
-    sessionStorage.removeItem("sherize_admin_auth");
-    setIsAuthenticated(false);
-    toast.info("Logged out successfully");
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      toast.info("Logged out successfully");
+    } catch (error) {
+      toast.error("Error logging out");
+    }
   };
 
     // --- CLOUDINARY UPLOAD ---
@@ -223,6 +240,14 @@ export default function AdminDashboard() {
   };
 
 
+  if (isAuthChecking) {
+    return (
+      <div className="min-h-screen flex items-center justify-center p-6 bg-white font-sans">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+      </div>
+    );
+  }
+
   if (!isAuthenticated) {
     return (
       <div className="min-h-screen flex items-center justify-center p-6 bg-white font-sans relative overflow-hidden">
@@ -281,8 +306,8 @@ export default function AdminDashboard() {
               </button>
             </div>
           </div>
-          <button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 hover:-translate-y-1 hover:shadow-blue-600/40 px-6 py-3.5 rounded-xl font-medium flex items-center justify-center gap-2 text-white transition-all duration-300 shadow-lg shadow-blue-600/20">
-            Sign In <ArrowRight className="h-4 w-4" />
+          <button type="submit" disabled={isLoggingIn} className="w-full bg-blue-600 hover:bg-blue-700 hover:-translate-y-1 hover:shadow-blue-600/40 px-6 py-3.5 rounded-xl font-medium flex items-center justify-center gap-2 text-white transition-all duration-300 shadow-lg shadow-blue-600/20 disabled:opacity-70 disabled:hover:translate-y-0">
+            {isLoggingIn ? "Signing In..." : "Sign In"} <ArrowRight className="h-4 w-4" />
           </button>
         </form>
       </div>

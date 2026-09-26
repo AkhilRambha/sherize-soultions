@@ -191,60 +191,96 @@ const DEFAULT_CAREER_PERKS = [
   { label: "Health & Wellness", desc: "Support for a balanced lifestyle." },
 ];
 
+import { db } from "@/config/firebase";
+import { doc, setDoc, onSnapshot } from "firebase/firestore";
+
+// IN-MEMORY CACHE (No more localStorage)
+let CACHE = {
+  stats: DEFAULT_STATS,
+  roles: DEFAULT_ROLES,
+  services: DEFAULT_SERVICES,
+  gallery: DEFAULT_GALLERY,
+  testimonials: DEFAULT_TESTIMONIALS,
+  whyChoose: DEFAULT_WHY_CHOOSE,
+  empowerment: DEFAULT_EMPOWERMENT,
+  contact: DEFAULT_CONTACT,
+  social: DEFAULT_SOCIAL,
+  aboutSpecialties: DEFAULT_ABOUT_SPECIALTIES,
+  careerPerks: DEFAULT_CAREER_PERKS,
+};
+
+// Start listening to Firebase
+let isListening = false;
+export const initFirebaseSync = () => {
+  if (isListening || !db) return;
+  isListening = true;
+  
+  try {
+    const docRef = doc(db, "sherize_data", "main");
+    onSnapshot(docRef, (snapshot) => {
+      if (snapshot.exists()) {
+        const data = snapshot.data();
+        if (data) {
+          // Update cache completely with cloud data
+          CACHE = { ...CACHE, ...data };
+          // Tell all components to re-render using fresh cloud data
+          window.dispatchEvent(new Event("sherize_data_updated"));
+        }
+      } else {
+        // First time setup: push default data to firebase so the database isn't empty
+        setDoc(docRef, CACHE).catch(console.error);
+      }
+    }, (error) => {
+      console.error("Firebase sync error:", error.message);
+    });
+  } catch (err) {
+    console.error("Firebase listening error:", err);
+  }
+};
+
+// Initialize immediately
+initFirebaseSync();
+
+const saveToFirebase = async (key, data) => {
+  // Update local in-memory cache instantly for snappy UI
+  CACHE[key] = data; 
+  window.dispatchEvent(new Event("sherize_data_updated")); 
+  
+  if (!db) {
+    console.error("Firebase database is not configured. Data is only saved in-memory and will be lost on refresh.");
+    return;
+  }
+
+  try {
+    const docRef = doc(db, "sherize_data", "main");
+    // Merge new data into Firestore
+    await setDoc(docRef, { [key]: data }, { merge: true });
+  } catch (error) {
+    console.error("Failed to save to Firebase:", error);
+  }
+};
+
 export const dataService = {
-  getStats: () => JSON.parse(localStorage.getItem("sherize_stats")) || DEFAULT_STATS,
-  setStats: (data) => {
-    localStorage.setItem("sherize_stats", JSON.stringify(data));
-    window.dispatchEvent(new Event("sherize_data_updated"));
-  },
-  getRoles: () => JSON.parse(localStorage.getItem("sherize_roles")) || DEFAULT_ROLES,
-  setRoles: (data) => {
-    localStorage.setItem("sherize_roles", JSON.stringify(data));
-    window.dispatchEvent(new Event("sherize_data_updated"));
-  },
-  getServices: () => JSON.parse(localStorage.getItem("sherize_services")) || DEFAULT_SERVICES,
-  setServices: (data) => {
-    localStorage.setItem("sherize_services", JSON.stringify(data));
-    window.dispatchEvent(new Event("sherize_data_updated"));
-  },
-  getGallery: () => JSON.parse(localStorage.getItem("sherize_gallery")) || DEFAULT_GALLERY,
-  setGallery: (data) => {
-    localStorage.setItem("sherize_gallery", JSON.stringify(data));
-    window.dispatchEvent(new Event("sherize_data_updated"));
-  },
-  getTestimonials: () => JSON.parse(localStorage.getItem("sherize_testimonials")) || DEFAULT_TESTIMONIALS,
-  setTestimonials: (data) => {
-    localStorage.setItem("sherize_testimonials", JSON.stringify(data));
-    window.dispatchEvent(new Event("sherize_data_updated"));
-  },
-  getWhyChoose: () => JSON.parse(localStorage.getItem("sherize_why_choose")) || DEFAULT_WHY_CHOOSE,
-  setWhyChoose: (data) => {
-    localStorage.setItem("sherize_why_choose", JSON.stringify(data));
-    window.dispatchEvent(new Event("sherize_data_updated"));
-  },
-  getEmpowerment: () => JSON.parse(localStorage.getItem("sherize_empowerment")) || DEFAULT_EMPOWERMENT,
-  setEmpowerment: (data) => {
-    localStorage.setItem("sherize_empowerment", JSON.stringify(data));
-    window.dispatchEvent(new Event("sherize_data_updated"));
-  },
-  getContact: () => JSON.parse(localStorage.getItem("sherize_contact")) || DEFAULT_CONTACT,
-  setContact: (data) => {
-    localStorage.setItem("sherize_contact", JSON.stringify(data));
-    window.dispatchEvent(new Event("sherize_data_updated"));
-  },
-  getSocial: () => JSON.parse(localStorage.getItem("sherize_social")) || DEFAULT_SOCIAL,
-  setSocial: (data) => {
-    localStorage.setItem("sherize_social", JSON.stringify(data));
-    window.dispatchEvent(new Event("sherize_data_updated"));
-  },
-  getAboutSpecialties: () => JSON.parse(localStorage.getItem("sherize_about_specialties")) || DEFAULT_ABOUT_SPECIALTIES,
-  setAboutSpecialties: (data) => {
-    localStorage.setItem("sherize_about_specialties", JSON.stringify(data));
-    window.dispatchEvent(new Event("sherize_data_updated"));
-  },
-  getCareerPerks: () => JSON.parse(localStorage.getItem("sherize_career_perks")) || DEFAULT_CAREER_PERKS,
-  setCareerPerks: (data) => {
-    localStorage.setItem("sherize_career_perks", JSON.stringify(data));
-    window.dispatchEvent(new Event("sherize_data_updated"));
-  },
+  getStats: () => CACHE.stats,
+  setStats: (data) => saveToFirebase("stats", data),
+  getRoles: () => CACHE.roles,
+  setRoles: (data) => saveToFirebase("roles", data),
+  getServices: () => CACHE.services,
+  setServices: (data) => saveToFirebase("services", data),
+  getGallery: () => CACHE.gallery,
+  setGallery: (data) => saveToFirebase("gallery", data),
+  getTestimonials: () => CACHE.testimonials,
+  setTestimonials: (data) => saveToFirebase("testimonials", data),
+  getWhyChoose: () => CACHE.whyChoose,
+  setWhyChoose: (data) => saveToFirebase("whyChoose", data),
+  getEmpowerment: () => CACHE.empowerment,
+  setEmpowerment: (data) => saveToFirebase("empowerment", data),
+  getContact: () => CACHE.contact,
+  setContact: (data) => saveToFirebase("contact", data),
+  getSocial: () => CACHE.social,
+  setSocial: (data) => saveToFirebase("social", data),
+  getAboutSpecialties: () => CACHE.aboutSpecialties,
+  setAboutSpecialties: (data) => saveToFirebase("aboutSpecialties", data),
+  getCareerPerks: () => CACHE.careerPerks,
+  setCareerPerks: (data) => saveToFirebase("careerPerks", data),
 };
