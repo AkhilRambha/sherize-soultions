@@ -2,8 +2,9 @@ import { useState, useEffect } from "react";
 import { dataService } from "@/services/dataService";
 import { toast } from "sonner";
 import { LayoutDashboard, Users, Briefcase, BarChart3, LogOut, CheckCircle2, Lock, ArrowRight, Plus, Trash2, Image, Eye, EyeOff } from "lucide-react";
-import { auth } from "@/config/firebase";
+import { auth, storage } from "@/config/firebase";
 import { signInWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 export default function AdminDashboard() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -72,29 +73,21 @@ export default function AdminDashboard() {
     }
   };
 
-    // --- CLOUDINARY UPLOAD ---
-  const uploadToCloudinary = async (file) => {
-    // TODO: Replace with your actual Cloudinary credentials
-    const CLOUD_NAME = 'yjhf6lsp';
-    const UPLOAD_PRESET = 'sherize_preset';
-    
-    const formData = new FormData();
-    formData.append('file', file);
-    formData.append('upload_preset', UPLOAD_PRESET);
+    // --- FIREBASE STORAGE UPLOAD ---
+  const uploadToFirebaseStorage = async (file) => {
+    const fileExtension = file.name.split('.').pop();
+    const fileName = `${Date.now()}_${Math.random().toString(36).substring(7)}.${fileExtension}`;
+    // Create a reference to the file in Firebase Storage
+    const storageRef = ref(storage, `uploads/${fileName}`);
     
     try {
-      const res = await fetch(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/auto/upload`, {
-        method: 'POST',
-        body: formData,
-      });
-      const data = await res.json();
-      if (data.secure_url) {
-        return data.secure_url;
-      } else {
-        throw new Error(data.error?.message || 'Upload failed');
-      }
+      // Upload the file
+      const snapshot = await uploadBytes(storageRef, file);
+      // Get the download URL
+      const downloadURL = await getDownloadURL(snapshot.ref);
+      return downloadURL;
     } catch (error) {
-      console.error('Cloudinary Upload Error:', error);
+      console.error('Firebase Storage Upload Error:', error);
       throw error;
     }
   };
@@ -103,13 +96,13 @@ export default function AdminDashboard() {
     const file = e.target.files[0];
     if (!file) return;
 
-    const toastId = toast.loading('Uploading image to Cloudinary...');
+    const toastId = toast.loading('Uploading file securely to Firebase...');
     try {
-      const url = await uploadToCloudinary(file);
+      const url = await uploadToFirebaseStorage(file);
       updaterFunction(index, field, url);
-      toast.success('Image uploaded successfully!', { id: toastId });
+      toast.success('File uploaded successfully!', { id: toastId });
     } catch (error) {
-      toast.error('Failed to upload image.', { id: toastId });
+      toast.error('Failed to upload file.', { id: toastId });
     }
   };
 
@@ -426,13 +419,6 @@ export default function AdminDashboard() {
                     <div>
                       <label className="text-[10px] uppercase tracking-wider text-gray-500 font-semibold mb-1 block">Apply Link (Email or URL)</label>
                       <input type="text" value={r.applyLink || ""} onChange={e => updateRole(i, 'applyLink', e.target.value)} placeholder="e.g. hr@sherize.com or https://..." className="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2 text-gray-900 text-sm focus:bg-white focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-all" />
-                    </div>
-                    <div>
-                      <label className="text-[10px] uppercase tracking-wider text-gray-500 font-semibold mb-1 block">Upload JD (Optional PDF/Image)</label>
-                      <div className="flex gap-2">
-                        <input type="file" accept=".pdf,image/*" onChange={(e) => handleImageUpload(e, 'role', i, 'jd', updateRole)} className="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2 text-gray-900 text-sm focus:bg-white focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-all" />
-                      </div>
-                      {r.jd && <a href={r.jd} target="_blank" rel="noreferrer" className="text-xs text-blue-600 hover:underline mt-1 block">View Current JD</a>}
                     </div>
                   </div>
                   <div className="w-full md:flex-1">
