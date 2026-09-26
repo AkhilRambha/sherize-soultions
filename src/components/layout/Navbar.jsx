@@ -68,17 +68,17 @@ export function Navbar() {
 
           <li className="relative group">
             <button className="nav-link flex items-center gap-1 py-4">
-              BPO <ChevronDown size={14} className="group-hover:rotate-180 transition-transform" />
+              Sherize BPO <ChevronDown size={14} className="group-hover:rotate-180 transition-transform" />
             </button>
             <div className="absolute top-[80%] left-0 pt-2 w-48 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-300 z-50">
-              <div className="rounded-2xl bg-black/90 backdrop-blur-xl border border-white/10 shadow-2xl overflow-hidden py-2 translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                <a href="https://admin.sherize.in" target="_blank" rel="noopener noreferrer" className="block px-5 py-2.5 text-sm font-medium text-white/70 hover:text-white hover:bg-white/10 transition-colors">
+              <div className="rounded-2xl bg-transparent backdrop-blur-xl border border-white/10 shadow-[0_8px_30px_rgb(0,0,0,0.08)] overflow-hidden py-2 translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                <a href="https://admin.sherize.in" target="_blank" rel="noopener noreferrer" className="block px-5 py-2.5 text-sm font-medium text-white/90 hover:text-white hover:bg-white/10 transition-colors">
                   Admin
                 </a>
-                <a href="https://client.sherize.in" target="_blank" rel="noopener noreferrer" className="block px-5 py-2.5 text-sm font-medium text-white/70 hover:text-white hover:bg-white/10 transition-colors">
+                <a href="https://client.sherize.in" target="_blank" rel="noopener noreferrer" className="block px-5 py-2.5 text-sm font-medium text-white/90 hover:text-white hover:bg-white/10 transition-colors">
                   Client
                 </a>
-                <a href="https://teamleader.sherize.in" target="_blank" rel="noopener noreferrer" className="block px-5 py-2.5 text-sm font-medium text-white/70 hover:text-white hover:bg-white/10 transition-colors">
+                <a href="https://teamleader.sherize.in" target="_blank" rel="noopener noreferrer" className="block px-5 py-2.5 text-sm font-medium text-white/90 hover:text-white hover:bg-white/10 transition-colors">
                   Team Leader
                 </a>
               </div>
@@ -116,7 +116,7 @@ export function Navbar() {
           ))}
 
           <li className="w-full flex flex-col items-center mt-4 pt-4 border-t border-white/10">
-            <span className="text-white/40 text-[10px] tracking-widest uppercase mb-2">BPO Portals</span>
+            <span className="text-white/40 text-[10px] tracking-widest uppercase mb-2">Sherize BPO</span>
             <a href="https://admin.sherize.in" target="_blank" rel="noopener noreferrer" className="mobile-link text-sm py-2">Admin</a>
             <a href="https://client.sherize.in" target="_blank" rel="noopener noreferrer" className="mobile-link text-sm py-2">Client</a>
             <a href="https://teamleader.sherize.in" target="_blank" rel="noopener noreferrer" className="mobile-link text-sm py-2">Team Leader</a>

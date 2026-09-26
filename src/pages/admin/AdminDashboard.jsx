@@ -8,7 +8,7 @@ import { signInWithEmailAndPassword, signOut, onAuthStateChanged } from "firebas
 export default function AdminDashboard() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isAuthChecking, setIsAuthChecking] = useState(true);
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [isLoggingIn, setIsLoggingIn] = useState(false);
@@ -53,7 +53,7 @@ export default function AdminDashboard() {
     setIsLoggingIn(true);
     try {
       // Use standard Firebase auth instead of dummy login
-      await signInWithEmailAndPassword(auth, username, password);
+      await signInWithEmailAndPassword(auth, email, password);
       toast.success("Welcome back, Admin!");
     } catch (error) {
       toast.error("Invalid credentials. Try Again");
@@ -264,19 +264,19 @@ export default function AdminDashboard() {
           <div className="space-y-8 mb-8 mt-4">
             <div className="relative">
               <input
-                id="admin-username"
-                type="text"
-                value={username}
-                onChange={e => setUsername(e.target.value)}
+                id="admin-email"
+                type="email"
+                value={email}
+                onChange={e => setEmail(e.target.value)}
                 className="peer w-full bg-transparent border-0 border-b-2 border-gray-200 px-0 py-2 text-gray-900 focus:border-blue-600 focus:ring-0 outline-none transition-colors placeholder-transparent"
-                placeholder="Username"
+                placeholder="Email Address"
                 required
               />
               <label
-                htmlFor="admin-username"
+                htmlFor="admin-email"
                 className="absolute left-0 -top-3.5 text-xs text-blue-600 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-xs peer-focus:text-blue-600 font-medium pointer-events-none"
               >
-                Username
+                Email Address
               </label>
             </div>
 
