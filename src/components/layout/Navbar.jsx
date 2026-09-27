@@ -115,11 +115,13 @@ export function Navbar() {
             </li>
           ))}
 
-          <li className="w-full flex flex-col items-center mt-4 pt-4 border-t border-white/10">
-            <span className="text-white/40 text-[10px] tracking-widest uppercase mb-2">Sherize BPO</span>
-            <a href="https://admin.sherize.in" target="_blank" rel="noopener noreferrer" className="mobile-link text-sm py-2">Admin</a>
-            <a href="https://client.sherize.in" target="_blank" rel="noopener noreferrer" className="mobile-link text-sm py-2">Client</a>
-            <a href="https://teamleader.sherize.in" target="_blank" rel="noopener noreferrer" className="mobile-link text-sm py-2">Team Leader</a>
+          <li className="w-full flex flex-col items-center mt-4 pt-6 border-t border-white/10">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 font-extrabold text-lg tracking-[0.1em] uppercase mb-4 shadow-sm">SHERIZE BPO</span>
+            <div className="flex flex-col items-center gap-1 w-full bg-white/5 rounded-2xl py-3 border border-white/5">
+              <a href="https://admin.sherize.in" target="_blank" rel="noopener noreferrer" className="mobile-link text-sm py-2 text-white/80 hover:text-white">Admin</a>
+              <a href="https://client.sherize.in" target="_blank" rel="noopener noreferrer" className="mobile-link text-sm py-2 text-white/80 hover:text-white">Client</a>
+              <a href="https://teamleader.sherize.in" target="_blank" rel="noopener noreferrer" className="mobile-link text-sm py-2 text-white/80 hover:text-white">Team Leader</a>
+            </div>
           </li>
 
           <li className="pt-4 flex justify-center w-full">
