@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Menu, X, ArrowRight, ChevronDown } from "lucide-react";
+import { FaGooglePlay } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
 import logo from "@/assets/images/logo.png";
 import "@/styles/global.css";
@@ -47,7 +48,17 @@ export function Navbar() {
   return (
     <header className="navbar-header">
       <nav className={`navbar ${scrolled ? "navbar-scrolled" : ""}`}>
-        <Link to="/" className="navbar-logo">
+        <a
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden lg:inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-medium bg-[#00E676]/10 text-[#00E676] hover:bg-[#00E676]/20 border border-[#00E676]/20 transition-all"
+          >
+            <FaGooglePlay size={16} />
+            <span>Get App</span>
+          </a>
+
+          <Link to="/" className="navbar-logo">
           <span className="logo-box">
             <img src={logo} alt="Sherize" className="logo-image" />
           </span>
@@ -124,7 +135,20 @@ export function Navbar() {
             </div>
           </li>
 
-          <li className="pt-4 flex justify-center w-full">
+          <li className="pt-2 flex justify-center w-full">
+            <a
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex justify-center items-center w-max gap-2 rounded-xl px-5 py-2.5 text-sm font-medium bg-[#00E676]/10 text-[#00E676] border border-[#00E676]/20"
+              onClick={() => setOpen(false)}
+            >
+              <FaGooglePlay size={16} />
+              Download on Play Store
+            </a>
+          </li>
+
+          <li className="pt-2 flex justify-center w-full">
             <Link
               to="/contact#form"
               className="inline-flex justify-center items-center w-max gap-2 rounded-xl px-5 py-2 text-sm font-medium btn-glow shine"

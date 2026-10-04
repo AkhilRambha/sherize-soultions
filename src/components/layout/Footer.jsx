@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Mail, MapPin, Phone, Instagram, Facebook, Linkedin, ArrowRight } from "lucide-react";
-import { FaWhatsapp } from "react-icons/fa";
+import { FaWhatsapp, FaGooglePlay } from "react-icons/fa";
 import { Reveal } from "@/components/shared/Reveal";
 import logo from "@/assets/images/iconshe.png";
 import { Link } from "react-router-dom";

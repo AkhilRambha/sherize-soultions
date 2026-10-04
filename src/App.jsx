@@ -16,6 +16,7 @@ import AdminDashboard from "./pages/admin/AdminDashboard";
 
 import { ScrollToTop } from "@/components/shared/ScrollToTop";
 import { FloatingContact } from "@/components/shared/FloatingContact";
+import { FloatingAppDownload } from "@/components/shared/FloatingAppDownload";
 
 export default function App() {
   const location = useLocation();
@@ -204,6 +205,7 @@ export default function App() {
       <Toaster />
 
       <FloatingContact />
+      <FloatingAppDownload />
     </>
   );
 }
