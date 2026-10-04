@@ -217,9 +217,9 @@ ${message}
         </section>
 
         {/* Map Embed Box */}
-        <section className="relative py-4 pb-16">
-          <div className="w-full max-w-[1280px] mx-auto px-6">
-            <div className="relative glass-strong rounded-[2rem] overflow-hidden shadow-2xl border border-white/10 w-full h-[400px]">
+        <section className="relative pb-0 sm:py-4 sm:pb-16">
+          <div className="w-full max-w-[1280px] mx-auto sm:px-6">
+            <div className="relative glass-strong sm:rounded-[2rem] overflow-hidden shadow-2xl border-y sm:border border-white/10 w-full h-[350px] sm:h-[400px]">
               <iframe
                 title="Google Maps Location"
                 src={`https://maps.google.com/maps?q=${encodeURIComponent(contact.address || "Hyderabad, Telangana")}&t=&z=13&ie=UTF8&iwloc=&output=embed`}
@@ -232,7 +232,7 @@ ${message}
                 className="absolute inset-0 z-0"
               />
               {/* Subtle overlay to blend it slightly with the dark theme */}
-              <div className="absolute inset-0 pointer-events-none bg-background/20 ring-1 ring-inset ring-white/10 rounded-[2rem] z-10"></div>
+              <div className="absolute inset-0 pointer-events-none bg-background/20 sm:ring-1 ring-inset ring-white/10 sm:rounded-[2rem] z-10"></div>
             </div>
           </div>
         </section>
