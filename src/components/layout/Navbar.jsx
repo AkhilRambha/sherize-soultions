@@ -127,7 +127,7 @@ export function Navbar() {
 
           <li className="pt-2 flex justify-center w-full">
             <a
-              href="#"
+              href="https://play.google.com/store/apps/details?id=in.sherize.app"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex justify-center items-center w-max gap-2 rounded-xl px-5 py-2.5 text-sm font-medium bg-[#00E676]/10 text-[#00E676] border border-[#00E676]/20"
