@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Phone, Mail, Instagram, Send, ArrowRight, Sparkles, MessageCircle } from "lucide-react";
+import { Phone, Mail, Instagram, Send, ArrowRight, Sparkles, MessageCircle, MapPin } from "lucide-react";
 import { PageShell, PageHero, CTASection } from "@/components/layout/PageShell";
 import { toast } from "sonner";
 import { BackButton } from "@/components/layout/BackButton";
@@ -39,6 +39,12 @@ export default function ContactPage() {
       label: "Email",
       value: contact.email,
       href: `mailto:${contact.email}`,
+    },
+    {
+      icon: MapPin,
+      label: "Address",
+      value: contact.address || "India",
+      href: contact.mapUrl || "https://maps.app.goo.gl/DgGVjhvx31cUVycM9",
     },
     {
       icon: Instagram,
@@ -207,6 +213,27 @@ ${message}
                 {sending ? "Sending…" : "Send Message"} <Send className="h-4 w-4" />
               </button>
             </form>
+          </div>
+        </section>
+
+        {/* Map Embed Box */}
+        <section className="relative py-4 pb-16">
+          <div className="w-full max-w-[1280px] mx-auto px-6">
+            <div className="relative glass-strong rounded-[2rem] overflow-hidden shadow-2xl border border-white/10 w-full h-[400px]">
+              <iframe
+                title="Google Maps Location"
+                src={`https://maps.google.com/maps?q=${encodeURIComponent(contact.address || "Hyderabad, Telangana")}&t=&z=13&ie=UTF8&iwloc=&output=embed`}
+                width="100%"
+                height="100%"
+                style={{ border: 0, filter: "invert(90%) hue-rotate(180deg)" }}
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="absolute inset-0 z-0"
+              />
+              {/* Subtle overlay to blend it slightly with the dark theme */}
+              <div className="absolute inset-0 pointer-events-none bg-background/20 ring-1 ring-inset ring-white/10 rounded-[2rem] z-10"></div>
+            </div>
           </div>
         </section>
 

@@ -720,6 +720,10 @@ export default function AdminDashboard() {
                     <input type="text" value={contact.address} onChange={e => updateContact('address', e.target.value)} className="w-full bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-900 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none" />
                   </div>
                   <div>
+                    <label className="text-xs uppercase text-gray-400 font-semibold mb-1 block">Map Link (Google Maps URL)</label>
+                    <input type="text" value={contact.mapUrl || ""} onChange={e => updateContact('mapUrl', e.target.value)} placeholder="https://maps.app.goo.gl/..." className="w-full bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-900 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none" />
+                  </div>
+                  <div>
                     <label className="text-xs uppercase text-gray-400 font-semibold mb-1 block">Instagram URL</label>
                     <input type="text" value={contact.instagram} onChange={e => updateContact('instagram', e.target.value)} className="w-full bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-900 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none" />
                   </div>

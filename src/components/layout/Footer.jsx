@@ -1,4 +1,4 @@
-﻿import { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Mail, MapPin, Phone, Instagram, Facebook, Linkedin, ArrowRight } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import { Reveal } from "@/components/shared/Reveal";
@@ -104,7 +104,7 @@ export function Footer() {
                   {[
                     { label: "Home", to: "/" },
                     { label: "About", to: "/about" },
-                    { label: "Careers", to: "/opportunities" },
+                    { label: "Careers Opportunities", to: "/opportunities" },
                     { label: "Services", to: "/services" },
                     { label: "Gallery", to: "/gallery" },
                     { label: "Contact", to: "/contact" },
@@ -123,11 +123,67 @@ export function Footer() {
               </div>
             </Reveal>
 
-            <Reveal delay={200}>
+            {/* <Reveal delay={200}>
               <FooterCol
                 title="Expertise"
                 links={["Digital Strategy", "Design Systems", "Web Development", "Growth Ops"]}
               />
+            </Reveal> */}
+
+
+            <Reveal delay={200}>
+              <div className="flex flex-col">
+                <h4 className="text-white font-semibold tracking-wide uppercase text-sm mb-6">
+                  Explore
+                </h4>
+
+                <ul className="space-y-4">
+                  <li>
+                    <Link
+                      to="/about"
+                      className="text-white/50 hover:text-white transition-colors text-sm"
+                    >
+                      About Sherize
+                    </Link>
+                  </li>
+
+                  <li>
+                    <Link
+                      to="/services"
+                      className="text-white/50 hover:text-white transition-colors text-sm"
+                    >
+                      Our Services
+                    </Link>
+                  </li>
+
+                  <li>
+                    <Link
+                      to="/opportunities"
+                      className="text-white/50 hover:text-white transition-colors text-sm"
+                    >
+                      Career Opportunities
+                    </Link>
+                  </li>
+
+                  <li>
+                    <Link
+                      to="/gallery"
+                      className="text-white/50 hover:text-white transition-colors text-sm"
+                    >
+                      Sherize Gallery
+                    </Link>
+                  </li>
+
+                  <li>
+                    <Link
+                      to="/contact"
+                      className="text-white/50 hover:text-white transition-colors text-sm"
+                    >
+                      Contact Sherize
+                    </Link>
+                  </li>
+                </ul>
+              </div>
             </Reveal>
 
             <Reveal delay={300}>
@@ -153,7 +209,15 @@ export function Footer() {
                     </a>
                   </li>
                   <li className="flex items-center gap-2">
-                    <MapPin size={14} /> {contact.address}
+                    <a
+                      href={contact.mapUrl || "https://maps.app.goo.gl/DgGVjhvx31cUVycM9"}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-primary transition-colors flex items-center gap-2"
+                    >
+                      <MapPin size={14} className="shrink-0" /> 
+                      <span className="break-words line-clamp-2">{contact.address}</span>
+                    </a>
                   </li>
                 </ul>
               </div>

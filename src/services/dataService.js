@@ -165,7 +165,8 @@ const DEFAULT_EMPOWERMENT = [
 const DEFAULT_CONTACT = {
   email: "info@sherize.com",
   phone: "+7672073746",
-  address: "Sahabhavana Township, Bandlaguda, Nagole , Hyderabad, 500068",
+  address: "Flat No 101, R V Heights, Hitech City Kothaguda, Serilingampalle (M), Hyderabad, Telangana 500084",
+  mapUrl: "https://maps.app.goo.gl/DgGVjhvx31cUVycM9",
   whatsapp: "https://wa.me/7672073746",
 };
 
