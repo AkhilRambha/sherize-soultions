@@ -48,17 +48,7 @@ export function Navbar() {
   return (
     <header className="navbar-header">
       <nav className={`navbar ${scrolled ? "navbar-scrolled" : ""}`}>
-        <a
-            href="#"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden lg:inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-medium bg-[#00E676]/10 text-[#00E676] hover:bg-[#00E676]/20 border border-[#00E676]/20 transition-all"
-          >
-            <FaGooglePlay size={16} />
-            <span>Get App</span>
-          </a>
-
-          <Link to="/" className="navbar-logo">
+        <Link to="/" className="navbar-logo">
           <span className="logo-box">
             <img src={logo} alt="Sherize" className="logo-image" />
           </span>
