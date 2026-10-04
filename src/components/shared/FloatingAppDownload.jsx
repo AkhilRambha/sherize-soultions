@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 
 export function FloatingAppDownload() {
-  const [playStoreLink, setPlayStoreLink] = useState("#");
+  const [playStoreLink, setPlayStoreLink] = useState("https://play.google.com/store/apps/details?id=in.sherize.app");
 
   return (
     <div className="fixed bottom-6 left-6 z-[9999] flex flex-col gap-3 animate-fade-up pointer-events-none">
