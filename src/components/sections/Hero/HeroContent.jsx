@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight, Sparkles, ChevronRight } from "lucide-react";
+import { FaGooglePlay } from "react-icons/fa";
 
 export function HeroContent() {
   const containerVariants = {
@@ -82,6 +83,16 @@ export function HeroContent() {
             Start a Project
             <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5 opacity-60 group-hover:opacity-100 transition-opacity" />
           </Link>
+          
+          <a
+            href="https://play.google.com/store/apps/details?id=in.sherize.app"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative overflow-hidden inline-flex items-center justify-center gap-3 rounded-xl px-7 py-3.5 text-sm sm:text-base font-bold bg-[#00E676]/10 text-[#00E676] border border-[#00E676]/30 transition-all hover:bg-[#00E676]/20 hover:border-[#00E676]/50 hover:scale-[1.02] shadow-[0_4px_14px_rgba(0,230,118,0.1)] hover:shadow-[0_6px_20px_rgba(0,230,118,0.25)] backdrop-blur-md"
+          >
+            <FaGooglePlay className="h-4 w-4 sm:h-5 sm:w-5" />
+            Sherize BPO App
+          </a>
         </motion.div>
       </motion.div>
     </div>

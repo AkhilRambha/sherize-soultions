@@ -10,11 +10,13 @@ export function FloatingAppDownload() {
         href={playStoreLink}
         target="_blank"
         rel="noopener noreferrer"
-        className="pointer-events-auto group relative flex items-center justify-center h-14 w-14 rounded-full bg-background border border-white/20 text-white shadow-lg shadow-black/20 hover:shadow-xl hover:shadow-white/10 hover:-translate-y-1 transition-all duration-300 overflow-hidden"
+        className="pointer-events-auto group relative flex items-center justify-center gap-3 h-14 px-6 rounded-full bg-background border border-[#00E676]/30 text-white shadow-lg shadow-black/20 hover:shadow-xl hover:shadow-[#00E676]/10 hover:-translate-y-1 transition-all duration-300 overflow-hidden"
         title="Download on Google Play"
       >
-        <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/20 via-purple-500/20 to-pink-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-        <FaGooglePlay className="h-6 w-6 text-[#00E676] group-hover:scale-110 transition-transform duration-300 z-10" />
+        <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/10 via-[#00E676]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        <FaGooglePlay className="h-5 w-5 text-[#00E676] group-hover:scale-110 transition-transform duration-300 z-10" />
+        <span className="font-semibold text-sm tracking-wide z-10 hidden sm:block">Download App</span>
+        <span className="font-semibold text-sm tracking-wide z-10 sm:hidden">Download</span>
       </a>
     </div>
   );
