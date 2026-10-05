@@ -13,7 +13,7 @@ const firebaseConfig = {
   storageBucket: "sherize-web.firebasestorage.app",
   messagingSenderId: "251215904596",
   appId: "1:251215904596:web:0fb373413741f2c48692c1",
-  measurementId: "G-6J5K77TWCH"
+  measurementId: "G-6J5K77TWCH",
 };
 
 // Initialize Firebase
